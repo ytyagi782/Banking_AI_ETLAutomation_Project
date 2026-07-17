@@ -1,0 +1,85 @@
+# ==========================================================================
+# LAYER 3 :  STAGING  ->  DWH   (Dimension & Fact loading)
+# Only VALID staging rows (IsValid = 1) flow into the warehouse.
+# Type-2 dimensions keep history, so we compare only the CURRENT version
+# of each record (IsCurrent = 1).  Matching is done on the natural/business
+# key (e.g. AccountID), not on the surrogate key (AccountSK).
+# ==========================================================================
+
+layer: "StagingToDWH"
+source_db: "staging"         # -> Bank_Staging
+target_db: "dwh"             # -> Bank_DWH
+
+# staging side: only accepted rows were loaded to the warehouse
+source_valid_filter: "IsValid = 1"
+
+tables:
+
+  Accounts:
+    source_table: "dbo.STG_Accounts"
+    target_table: "dbo.DimAccount_Type1"
+    load_proc: "dbo.usp_Load_DimAccount_Type1"
+    dim_type: "Type1"
+    key: ["AccountID"]         # natural key present in both tables
+    target_filter: null        # Type-1: one row per key, no history
+    compare_columns:
+      - AccountID
+      - AccountNumber
+      - CustomerID
+      - AccountType
+      - Balance
+      - CurrencyCode
+    not_null_columns: ["AccountID", "AccountNumber", "CustomerID"]
+
+  Branches:
+    source_table: "dbo.STG_Branches"
+    target_table: "dbo.DimBranch_Type2"
+    load_proc: "dbo.usp_Load_DimBranch_Type2"
+    dim_type: "Type2"
+    key: ["BranchID"]
+    target_filter: "IsCurrent = 1"   # compare current version only
+    compare_columns:
+      - BranchID
+      - BranchCode
+      - BranchName
+      - City
+      - StateName
+      - Country
+    not_null_columns: ["BranchID", "BranchCode"]
+
+  Customers:
+    source_table: "dbo.STG_Customers"
+    target_table: "dbo.DimCustomer_Type2"
+    load_proc: "dbo.usp_Load_DimCustomer_Type2"
+    dim_type: "Type2"
+    key: ["CustomerID"]
+    target_filter: "IsCurrent = 1"
+    compare_columns:
+      - CustomerID
+      - CustomerCode
+      - CustomerName
+      - DOB
+      - Gender
+      - Email
+      - City
+      - StateName
+      - Country
+    not_null_columns: ["CustomerID", "CustomerCode"]
+
+  Transactions:
+    source_table: "dbo.STG_Transactions"
+    target_table: "dbo.FactTransaction"
+    load_proc: "dbo.usp_Load_FactTransaction"
+    dim_type: "Fact"
+    key: ["TransactionID"]
+    target_filter: null
+    # Fact stores surrogate keys (AccountSK/BranchSK) instead of the natural
+    # AccountID/BranchID, so we compare only the columns that exist on both sides.
+    compare_columns:
+      - TransactionID
+      - TransactionNumber
+      - TransactionType
+      - Amount
+      - CurrencyCode
+      - TransactionDate
+    not_null_columns: ["TransactionID", "TransactionNumber"]

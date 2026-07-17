@@ -1,0 +1,79 @@
+# ==========================================================================
+# LAYER 1 :  SOURCE  ->  PRE-STAGING   (direct move, no transformation)
+# The data must arrive in PreStaging exactly as it is in Source.
+# ==========================================================================
+
+layer: "SourceToPreStaging"
+source_db: "source"          # -> Bank_Source   (see settings.yaml -> databases)
+target_db: "prestaging"      # -> Bank_PreStaging
+
+tables:
+
+  Accounts:
+    source_table: "dbo.SRC_Accounts"
+    target_table: "dbo.PS_Accounts"
+    load_proc: "dbo.usp_Load_PS_Accounts"
+    key: ["AccountID"]
+    # columns that must match exactly between source and target (direct move)
+    compare_columns:
+      - AccountID
+      - AccountNumber
+      - CustomerID
+      - AccountType
+      - OpenDate
+      - CloseDate
+      - Status
+      - Balance
+      - CurrencyCode
+    not_null_columns: ["AccountID", "AccountNumber", "CustomerID"]
+
+  Branches:
+    source_table: "dbo.SRC_Branches"
+    target_table: "dbo.PS_Branches"
+    load_proc: "dbo.usp_Load_PS_Branches"
+    key: ["BranchID"]
+    compare_columns:
+      - BranchID
+      - BranchCode
+      - BranchName
+      - City
+      - StateName
+      - Country
+      - ManagerName
+    not_null_columns: ["BranchID", "BranchCode"]
+
+  Customers:
+    source_table: "dbo.SRC_Customers"
+    target_table: "dbo.PS_Customers"
+    load_proc: "dbo.usp_Load_PS_Customers"
+    key: ["CustomerID"]
+    compare_columns:
+      - CustomerID
+      - CustomerCode
+      - CustomerName
+      - DOB
+      - Gender
+      - Email
+      - Phone
+      - AddressLine
+      - City
+      - StateName
+      - Country
+    not_null_columns: ["CustomerID", "CustomerCode"]
+
+  Transactions:
+    source_table: "dbo.SRC_Transactions"
+    target_table: "dbo.PS_Transactions"
+    load_proc: "dbo.usp_Load_PS_Transactions"
+    key: ["TransactionID"]
+    compare_columns:
+      - TransactionID
+      - TransactionNumber
+      - AccountID
+      - BranchID
+      - TransactionDate
+      - TransactionType
+      - Amount
+      - CurrencyCode
+      - Description
+    not_null_columns: ["TransactionID", "TransactionNumber", "AccountID", "BranchID"]

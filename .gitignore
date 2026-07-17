@@ -1,0 +1,19 @@
+# virtual environment
+.venv/
+
+# secrets
+.env
+
+# generated output
+logs/
+reports/
+
+# AI agent artifacts (regenerated on demand)
+agents/output/
+agents/generated_tests/
+
+# python / pytest / IDE
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/

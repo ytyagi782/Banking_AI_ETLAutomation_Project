@@ -1,0 +1,63 @@
+# ==========================================================================
+# GLOBAL SETTINGS  -  Banking ETL Automation Framework
+# Everything that is common to the whole project lives here.
+# Layer-specific table details live in the other YAML files in this folder.
+# ==========================================================================
+
+database:
+  server: "DESKTOP-HL2FC2P\\SQLYKT"
+  driver: "ODBC Driver 17 for SQL Server"
+  trusted_connection: true          # Windows Authentication (no user/password)
+  timeout: 30
+
+# Logical layer name  ->  physical database name
+databases:
+  source: "Bank_Source"
+  prestaging: "Bank_PreStaging"
+  staging: "Bank_Staging"
+  dwh: "Bank_DWH"
+
+paths:
+  logs: "logs"
+  reports: "reports"
+
+logging:
+  keep_versions: 3                  # only the newest 5 log files are kept
+  version_cycle: 10                 # version number cycles 1..10, then restarts at 1
+  level: "INFO"                     # INFO / DEBUG / WARNING / ERROR
+
+reporting:
+  # Report versioning (mirrors the logger's scheme):
+  #   version_cycle  - version number cycles 1..N then restarts at 1
+  #   keep_versions  - only the newest N versions of each report type are kept
+  # So with cycle=5, keep=3: versions run _v1.._v5 then wrap to _v1, and at most
+  # 3 versions of each report (Summary/Detailed/Management) exist at once.
+  version_cycle: 2
+  keep_versions: 2
+  # colours used to highlight cells in the detailed excel report
+  colors:
+    diff: "FFFF00"        # yellow  -> column value is different
+    missing: "FF9999"     # red     -> record missing on one side
+    duplicate: "FFC000"   # orange  -> duplicate record
+  max_detail_rows: 500    # safety cap so the excel report never explodes
+  # Branding shown in the header of the Management HTML report. Image paths are
+  # relative to the project root; images are embedded (base64) so the report
+  # stays self-contained. Leave a value blank / file missing to omit that element.
+  branding:
+    company_name: "Future Tech Skills"
+    company_logo: "assets/company_logo.png"   # left side, next to the title
+    author_name: "Yogesh Tyagi"
+    author_role: "Sr. QA Architect"
+    author_image: "assets/author.png"         # right side (shown as a circle)
+
+email:
+  enabled: true           # ON - app password is provided in .env
+  smtp_server: "smtp.gmail.com"
+  smtp_port: 587
+  sender: "hrsoftwarejobsncr@gmail.com"
+  recipients:
+    - "ytyagi782@gmail.com"
+
+  subject: "Bank ETL Automation - Test Execution Report (Final)"
+  # The app password is read from the .env file key EMAIL_APP_PASSWORD
+  # (never store the real password inside this YAML file).
