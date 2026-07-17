@@ -27,8 +27,15 @@ python-dotenv>=1.0     # load ANTHROPIC_API_KEY from the .env file
 # pytest -k "not test_reset_and_reload_all_layers"  #with errors
 
 #run pipeline
-#step#1 -> cd C:\actions-runner
-#step#2 -> .\run.cmd
+# Step#1 -> cd C:\Users\Yogesh Tyagi\PycharmProjects\Banking_AI_ETLAutomation_Project
+# Step#2 -> git status
+# Step#3 -> git add .
+# Step#4 -> git commit -m "Updated ETL framework and GitHub pipeline"
+# Step#5 -> git push origin main
+# Step%6 -> git branch
+
+# Step#1 -> cd C:\actions-runner
+# Step#2 -> .\run.cmd
 
 
 
