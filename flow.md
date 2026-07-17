@@ -381,7 +381,14 @@ in `result_store`. It:
      `reports/DetailedReport_<ts>.xlsx` — a "Failures" sheet plus one coloured
      sheet per table (yellow = diff, red = missing, orange = duplicate).
    - `html_report.build_html_report(...)` →
-     `reports/ManagementReport_<ts>.html` — clean KPI-card HTML for management.
+     `reports/ManagementReport_<ts>.html` — clean KPI-card HTML for management,
+     with a **branded header** (company name/logo + author name/photo) read from
+     `reporting.branding` in `settings.yaml`; the `assets/` images are embedded as
+     base64 so the file is self-contained.
+
+   All three reports are **version-cycled** like the logs: `reporting.version_cycle`
+   controls how far the `_v#` suffix counts before wrapping, and
+   `reporting.keep_versions` keeps only the newest N of each report type.
 3. Logs the final tally (`total / passed / failed / pass_rate`).
 4. Calls `email_report.send_report(...)` — **off by default**; only emails if
    `email.enabled: true` in `settings.yaml` and a Gmail App Password is set in
@@ -458,3 +465,28 @@ python main.py
 In every case the **flow above is the same** — the only difference is which
 tests actually execute versus get marked SKIP; the logging, result store, and
 report generation always run at the end.
+
+---
+
+## 15. The same flow in CI → `.github/workflows/python-ci.yml`
+
+The exact flow above also runs automatically in **GitHub Actions** on every push
+and pull request to `main` (and on-demand via *Run workflow*). Because the
+prerequisite test (step 8b) rebuilds all four SQL Server databases through
+`sqlcmd`, the job runs on a **self-hosted Windows runner** that can reach the
+local SQL Server instance — not a GitHub-hosted runner.
+
+The job does, in order:
+
+1. **Checkout** the repository.
+2. **Set up Python 3.12**.
+3. **Install dependencies** — `pip install -r requirements.txt`.
+4. **Verify secrets** — prints whether `EMAIL_SENDER`, `EMAIL_APP_PASSWORD` and
+   `EMAIL_RECEIVER` are present (these GitHub Secrets are injected as environment
+   variables for the run). `EMAIL_APP_PASSWORD` is what `email_report.py` reads to
+   send the report email.
+5. **Run PyTest** — plain `pytest`, i.e. the full flow in this document
+   (prerequisite reset → validations → 3 reports + email).
+6. **Upload Reports** — the `Reports/` folder is uploaded as a `TestReports`
+   build artifact with `if: always()`, so the reports are kept even when tests
+   fail.

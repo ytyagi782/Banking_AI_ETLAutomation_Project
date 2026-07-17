@@ -32,11 +32,16 @@ Banking_AI_ETLAutomation_Project/
 ├── pytest.ini                    # markers, ordering, report options
 ├── requirements.txt              # dependencies
 ├── architecture.md               # this file
+├── flow.md                       # step-by-step execution walk-through of a pytest run
 ├── memory.md                     # running notes for AI / humans (what's done, what's expected)
-├── .env.example                  # template for the Gmail App Password
+├── .env.example                  # template for EMAIL_APP_PASSWORD + ANTHROPIC_API_KEY
+│
+├── .github/
+│   └── workflows/
+│       └── python-ci.yml         # GitHub Actions CI (self-hosted Windows runner) - see below
 │
 ├── config/                       # ALL configuration lives here (modular YAML)
-│   ├── settings.yaml             # server, driver, db names, paths, logging, email, colours
+│   ├── settings.yaml             # server, driver, db names, paths, logging, reporting, email, branding
 │   ├── source_to_prestaging.yaml # Layer 1 tables: keys, columns, procs
 │   ├── prestaging_to_staging.yaml# Layer 2 tables + transformation rules
 │   └── staging_to_dwh.yaml       # Layer 3 tables: dim/fact, SCD filters
@@ -44,7 +49,7 @@ Banking_AI_ETLAutomation_Project/
 ├── utilities/                    # reusable engine (import this from tests)
 │   ├── config_loader.py          # loads + caches the YAML files
 │   ├── db.py                     # SQL Server connection + pandas read helpers
-│   ├── logger.py                 # run logger; keeps only 5 versions, name ends _v#
+│   ├── logger.py                 # run logger; version-cycled, keeps newest N, name ends _v#
 │   ├── result_store.py           # collects every validation outcome for the reports
 │   └── comparison.py             # row-level diff engine (diffs / missing / duplicates)
 │
@@ -53,17 +58,28 @@ Banking_AI_ETLAutomation_Project/
 │
 ├── reporting_engine/
 │   ├── excel_report.py           # Summary report + Detailed coloured report
-│   ├── html_report.py            # Management HTML report
-│   ├── email_report.py           # emails the report (off unless enabled)
+│   ├── html_report.py            # Management HTML report (branded header)
+│   ├── email_report.py           # emails the report (Gmail SMTP; on when enabled + password set)
 │   └── generate.py               # builds all three reports + email in one call
 │
 ├── tests/                        # one file per table, grouped by layer
+│   ├── test_00_prerequisite.py   # runs FIRST: resets + reloads all 4 layers, gates the suite
 │   ├── SourceToPreStaging/       # test_accounts / branches / customers / transactions
 │   ├── PreStagingToStaging/      # same 4 tables
 │   └── StagingToDWH/             # same 4 tables
 │
-├── logs/                         # etl_<datetime>_v#.log  (max 5 kept)
-└── reports/                      # SummaryReport / DetailedReport / ManagementReport
+├── GoldenTestData/               # known-good baseline of Bank_Source as SQL INSERT scripts
+│   ├── generate_golden_data.py   # re-reads source (SELECT only) and regenerates the .sql files
+│   ├── 00_restore_all_source_data.sql        # delete + re-insert Source only
+│   ├── 01_SRC_Branches.sql .. 04_SRC_Transactions.sql  # per-table INSERTs (FK-safe order)
+│   └── 10_full_reset_and_reload_all_layers.sql # delete all 4 layers, reload from Source via procs
+│
+├── assets/                       # branding images embedded in the HTML / email report header
+│   ├── company_logo.png
+│   └── author.png
+│
+├── logs/                         # etl_<datetime>_v#.log  (git-ignored; newest N kept)
+└── reports/                      # SummaryReport / DetailedReport / ManagementReport (git-ignored)
 ```
 
 ---
@@ -124,9 +140,17 @@ comparison is case-insensitive because standardising case is an intended step.
    a **Missing** record is fully **red**; a **Duplicate** record is fully **orange**.
    All layers for a table share the one sheet (told apart by the `Layer` column).
 3. **Management report** (`ManagementReport_<ts>.html`) - clean HTML page with KPI
-   cards and tables, easy to share with management.
+   cards and tables, easy to share with management. The header is **branded** from
+   `reporting.branding` in `settings.yaml` (company name + logo on the left, author
+   name/role + photo on the right); the images in `assets/` are embedded as base64
+   so the file stays self-contained.
 
-Email delivery (Gmail SMTP) is available but **off by default** - see below.
+All three reports are **version-cycled** the same way as the logs: `reporting.version_cycle`
+sets how far the `_v#` suffix counts before wrapping, and `reporting.keep_versions`
+keeps only the newest N of each report type (default: cycle 2, keep 2).
+
+Email delivery (Gmail SMTP) sends the HTML report with the Excel reports attached.
+It runs when `email.enabled: true` **and** an app password is available - see below.
 
 ---
 
@@ -150,6 +174,43 @@ pytest -m transformation
 1. Create a Gmail **App Password** (Google Account -> Security -> App passwords).
 2. Copy `.env.example` to `.env` and set `EMAIL_APP_PASSWORD=...`.
 3. Set `email.enabled: true` in `config/settings.yaml`.
+
+The `sender` and `recipients` are read from `settings.yaml`; only the app password
+comes from `.env` (key `EMAIL_APP_PASSWORD`) or an environment variable of the same
+name. Email is currently **enabled** in `settings.yaml`.
+
+## Golden test data (`GoldenTestData/`)
+
+A known-good baseline of `Bank_Source` stored as SQL `INSERT` scripts, so any run
+can start from an identical, repeatable state.
+
+* `10_full_reset_and_reload_all_layers.sql` - deletes **all four layers**
+  (warehouse first, source last), re-inserts the golden Source rows, then runs the
+  load stored procedures to rebuild PreStaging, Staging and DWH. `SET XACT_ABORT ON`
+  stops on the first error. This is the exact script `tests/test_00_prerequisite.py`
+  shells out to (via `sqlcmd`) before every validation run.
+* `00_restore_all_source_data.sql` - resets **Source only**.
+* `01_..04_*.sql` - per-table INSERTs in foreign-key-safe order.
+* `generate_golden_data.py` - regenerates all `.sql` files from current source data
+  (read-only / SELECT only).
+
+See `GoldenTestData/README.md` for full usage.
+
+## Continuous integration (`.github/workflows/python-ci.yml`)
+
+CI runs the whole suite in GitHub Actions:
+
+* **Triggers:** push to `main`, pull request to `main`, and manual
+  `workflow_dispatch`.
+* **Runner:** a **self-hosted Windows x64** runner - it needs local access to the
+  SQL Server instance and `sqlcmd`, since the prerequisite test rebuilds the four
+  databases.
+* **Steps:** checkout -> set up Python 3.12 -> `pip install -r requirements.txt`
+  -> verify secrets are present -> `pytest` -> upload the `Reports/` folder as a
+  `TestReports` build artifact (`if: always()`, so reports are kept even on failure).
+* **GitHub Secrets** (injected as env vars for the run): `EMAIL_SENDER`,
+  `EMAIL_APP_PASSWORD`, `EMAIL_RECEIVER`. `EMAIL_APP_PASSWORD` is what
+  `email_report.py` reads to send the report email from CI.
 
 ## Configuration first
 

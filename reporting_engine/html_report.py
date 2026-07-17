@@ -203,7 +203,7 @@ def build_html_report(path):
   <div class="banner">Overall result: {overall} &nbsp; | &nbsp; Pass rate: {counts['pass_rate']}%</div>
   <div class="wrap">
     <div class="cards">
-      {_kpi_card("Total TestCases", counts['total'], "#3b4a63", "#5a6f91", "&#128203;")}
+      {_kpi_card("Total TCS", counts['total'], "#3b4a63", "#5a6f91", "&#128203;")}
       {_kpi_card("Passed", counts['passed'], "#1e8e3e", "#4cc46b", "&#9989;")}
       {_kpi_card("Failed", counts['failed'], "#c62828", "#ef5350", "&#10060;")}
       {_kpi_card("Skipped", counts['skipped'], "#607d8b", "#90a4ae", "&#9193;")}

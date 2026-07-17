@@ -3,7 +3,7 @@
 > Purpose: a running record of what this project is, what has been built, and
 > what we expect next. Read this first, and keep it updated as work continues.
 
-_Last updated: 2026-07-16_
+_Last updated: 2026-07-17_
 
 ---
 
@@ -138,6 +138,51 @@ six-step spec: 4=test data (scripts only), 5=execute, 6=defects.
 
 Outputs go to `agents/output/` + `agents/generated_tests/` (both git-ignored).
 
+## CI/CD - GitHub Actions (DONE - added 2026-07-17)
+
+* Workflow: `.github/workflows/python-ci.yml` (name "Banking AI ETL Automation").
+* Triggers: push to `main`, PR to `main`, and manual `workflow_dispatch`.
+* Runner: **self-hosted, Windows, X64** (labels `[self-hosted, Windows, X64]`) -
+  required because the prerequisite test rebuilds all 4 SQL Server DBs via
+  `sqlcmd`, so the runner needs local SQL Server + `sqlcmd` access. A
+  GitHub-hosted runner would not work.
+* Steps: checkout -> setup Python 3.12 -> `pip install -r requirements.txt` ->
+  "Verify Secrets" (prints FOUND/NOT FOUND for the 3 email secrets) -> `pytest`
+  -> upload `Reports/` as artifact `TestReports` (`if: always()`).
+* **GitHub Secrets** used as env vars: `EMAIL_SENDER`, `EMAIL_APP_PASSWORD`,
+  `EMAIL_RECEIVER`. NOTE: `email_report.py` currently reads sender/recipients from
+  `settings.yaml` and only the password from `EMAIL_APP_PASSWORD`; `EMAIL_SENDER`
+  / `EMAIL_RECEIVER` are passed by CI but not yet consumed by the code. Revisit if
+  CI should drive the addresses instead of `settings.yaml`.
+
+## Golden test data (`GoldenTestData/`) + reset-as-first-test
+
+* Known-good baseline of `Bank_Source` as SQL INSERT scripts (Branches 5,
+  Customers 10, Accounts 10, Transactions 20). File prefixes = FK-safe order.
+* `10_full_reset_and_reload_all_layers.sql` = the full pipeline reset: delete all
+  4 layers (warehouse->source), re-insert Source golden data, run the load procs
+  to rebuild PS/STG/DWH. `SET XACT_ABORT ON`. This is what
+  `tests/test_00_prerequisite.py` runs via `sqlcmd` before every suite.
+* `00_restore_all_source_data.sql` = Source only. `generate_golden_data.py`
+  regenerates the .sql from live source (read-only). See `GoldenTestData/README.md`.
+
+## Branding / assets (in the reports)
+
+* `assets/company_logo.png` + `assets/author.png` are embedded (base64) into the
+  Management HTML report header and the email; configured under
+  `reporting.branding` in `settings.yaml` (company "Future Tech Skills", author
+  "Yogesh Tyagi", "Sr. QA Architect").
+* Report versioning: `reporting.version_cycle` / `reporting.keep_versions` (cur:
+  cycle 2, keep 2) mirror the logger's scheme for the `_v#` suffix on reports.
+
+## Config drift to remember (verify vs. docs)
+
+* `logging.keep_versions` is currently **3** (not 5), `version_cycle` 10.
+* `email.enabled: true` and sender is now `hrsoftwarejobsncr@gmail.com` ->
+  recipient `ytyagi782@gmail.com` (settings.yaml).
+* `.env.example` documents **two** keys: `EMAIL_APP_PASSWORD` and
+  `ANTHROPIC_API_KEY`.
+
 Verified 2026-07-17 without an API key: all 6 agents run; generated tests
 collect+pass (76/76); curated suite passes 78/78 after a fresh prerequisite
 reset (the earlier 9 "failures" were a prior DB state - a clean reload restores
@@ -147,9 +192,9 @@ each pytest run (incl. via agent 4) sends the report email.
 ## Expectations / possible next steps
 * Add more transformation rules per table in the layer-2 YAML as business rules
   are confirmed.
-* If email is wanted: add Gmail App Password to `.env` and set
-  `email.enabled: true` in `settings.yaml` (sender yogeshtyagi512@gmail.com ->
-  ytyagi782@gmail.com).
+* Email is already ON (`email.enabled: true`; sender
+  hrsoftwarejobsncr@gmail.com -> ytyagi782@gmail.com). The app password lives in
+  `.env` locally and in the `EMAIL_APP_PASSWORD` GitHub Secret for CI.
 * Consider a "rejection report" validation (checks every rejected staging row
   has a RejectionReason) if required.
 * Keep this file updated whenever tables, rules, or logic change.
