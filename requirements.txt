@@ -30,7 +30,7 @@ python-dotenv>=1.0     # load ANTHROPIC_API_KEY from the .env file
 # Step#1 -> cd C:\Users\Yogesh Tyagi\PycharmProjects\Banking_AI_ETLAutomation_Project
 # Step#2 -> git status
 # Step#3 -> git add .
-# Step#4 -> git commit -m "Updated ETL framework by Yogesh Tyagi"
+# Step#4 -> git commit -m "Updated ETL framework by Yogesh Tyagi - Testing Purpose"
 # Step#5 -> git push origin main
 # Step%6 -> git branch
 
@@ -44,7 +44,7 @@ python-dotenv>=1.0     # load ANTHROPIC_API_KEY from the .env file
     #Step#2  (If not Installed, Download and Install with default settings) -> https://git-scm.com/downloads
 
 # STEP 2 - Create GitHub Account
-    #Step#1 
+    #Step#1 test
 
 
 
