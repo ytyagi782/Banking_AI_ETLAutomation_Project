@@ -28,7 +28,7 @@ checks that the data moved correctly through the four ETL layers:
 
 ```
 Bank_Source -> Bank_PreStaging -> Bank_Staging -> Bank_DWH
-            (Layer 1)         (Layer 2)        (Layer 3)
+          (Layer 1)         (Layer 2)        (Layer 3)
 ```
 
 ---

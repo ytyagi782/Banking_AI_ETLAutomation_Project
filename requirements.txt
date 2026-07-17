@@ -4,6 +4,7 @@
 pyodbc>=5.3.0          # SQL Server connectivity (ODBC Driver 17)
 pandas>=2.0            # data comparison and handling
 openpyxl>=3.1          # Excel reports with cell colouring
+Pillow>=10.0           # embed the branding logo/author images in Excel reports
 PyYAML>=6.0            # YAML configuration files
 
 pytest>=8.0            # test runner
@@ -21,7 +22,7 @@ python-dotenv>=1.0     # load ANTHROPIC_API_KEY from the .env file
 # pytest --only=staging_to_dwh                 # all Layer 3 tests; rest SKIP
 # pytest --only=count_check                     # only count checks; rest SKIP
 # pytest --only=staging_to_dwh,count_check      # Layer 3 tests OR count checks; rest SKIP
-# pytest --only="count_check or metadata_check" => this will execute for these two markers and everythign else will be skipped
+# pytest --only="count_check or metadata_check" => this will execute for these two markers and everything else will be skipped
 
 # pytest #execute all for positive flow
 # pytest -k "not test_reset_and_reload_all_layers"  #with errors
