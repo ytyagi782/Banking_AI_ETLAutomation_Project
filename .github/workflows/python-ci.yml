@@ -3,11 +3,11 @@ name: Banking AI ETL Automation
 on:
   push:
     branches:
-      - main
+      - YKT
 
   pull_request:
     branches:
-      - main
+      - YKT
 
   workflow_dispatch:
 
