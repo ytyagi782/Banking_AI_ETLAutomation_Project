@@ -98,3 +98,15 @@ def test_connection(logical_db):
         return int(df["ok"].iloc[0]) == 1
     except Exception:
         return False
+
+
+def check_connections():
+    """Verify every logical database is reachable (read-only, SELECT 1)."""
+    from utilities.logger import get_logger
+    log = get_logger()
+    ok = True
+    for logical in ["source", "prestaging", "staging", "dwh"]:
+        connected = test_connection(logical)
+        log.info(f"Connection {logical:11}: {'OK' if connected else 'FAILED'}")
+        ok = ok and connected
+    return ok

@@ -1,0 +1,103 @@
+# Append these under `tables:` in config/source_to_prestaging.yaml
+
+  Employees:
+    source_table: "dbo.SRC_Employees"
+    target_table: "dbo.PS_Employees"
+    load_proc: "dbo.usp_Load_PS_Employees"
+    key: ["EmployeeID"]
+    compare_columns:
+      - EmployeeID
+      - EmployeeCode
+      - FirstName
+      - LastName
+      - Email
+      - Phone
+      - Designation
+      - BranchID
+      - Salary
+      - HireDate
+      - Status
+    not_null_columns: ['EmployeeID', 'EmployeeCode']
+
+  Loans:
+    source_table: "dbo.SRC_Loans"
+    target_table: "dbo.PS_Loans"
+    load_proc: "dbo.usp_Load_PS_Loans"
+    key: ["LoanID"]
+    compare_columns:
+      - LoanID
+      - LoanNumber
+      - CustomerID
+      - ProductType
+      - PrincipalAmount
+      - InterestRate
+      - TermMonths
+      - DisbursementDate
+      - OutstandingAmount
+      - Status
+    not_null_columns: ['LoanID', 'LoanNumber', 'CustomerID']
+
+  Cards:
+    source_table: "dbo.SRC_Cards"
+    target_table: "dbo.PS_Cards"
+    load_proc: "dbo.usp_Load_PS_Cards"
+    key: ["CardID"]
+    compare_columns:
+      - CardID
+      - CardNumber
+      - AccountID
+      - CardType
+      - Network
+      - CreditLimit
+      - IssueDate
+      - ExpiryDate
+      - Status
+    not_null_columns: ['CardID', 'CardNumber', 'AccountID']
+
+  Merchants:
+    source_table: "dbo.SRC_Merchants"
+    target_table: "dbo.PS_Merchants"
+    load_proc: "dbo.usp_Load_PS_Merchants"
+    key: ["MerchantID"]
+    compare_columns:
+      - MerchantID
+      - MerchantCode
+      - MerchantName
+      - Category
+      - City
+      - Country
+      - Status
+    not_null_columns: ['MerchantID', 'MerchantCode']
+
+  CardTransactions:
+    source_table: "dbo.SRC_CardTransactions"
+    target_table: "dbo.PS_CardTransactions"
+    load_proc: "dbo.usp_Load_PS_CardTransactions"
+    key: ["CardTransactionID"]
+    compare_columns:
+      - CardTransactionID
+      - CardID
+      - MerchantID
+      - CardTxnNumber
+      - TxnDate
+      - Amount
+      - CurrencyCode
+      - TxnType
+      - Status
+    not_null_columns: ['CardTransactionID', 'CardTxnNumber']
+
+  LoanPayments:
+    source_table: "dbo.SRC_LoanPayments"
+    target_table: "dbo.PS_LoanPayments"
+    load_proc: "dbo.usp_Load_PS_LoanPayments"
+    key: ["LoanPaymentID"]
+    compare_columns:
+      - LoanPaymentID
+      - LoanID
+      - PaymentNumber
+      - PaymentDate
+      - PaymentAmount
+      - PrincipalComponent
+      - InterestComponent
+      - PaymentMethod
+    not_null_columns: ['LoanPaymentID', 'PaymentNumber']

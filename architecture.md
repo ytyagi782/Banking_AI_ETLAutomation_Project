@@ -27,14 +27,12 @@ data or executes stored procedures.
 ```
 Banking_AI_ETLAutomation_Project/
 │
-├── main.py                       # read-only entry point (checks DB connections; no data load)
 ├── conftest.py                   # pytest hooks: reset store, build reports at the end
 ├── pytest.ini                    # markers, ordering, report options
 ├── requirements.txt              # dependencies
 ├── architecture.md               # this file
 ├── flow.md                       # step-by-step execution walk-through of a pytest run
 ├── memory.md                     # running notes for AI / humans (what's done, what's expected)
-├── .env.example                  # template for EMAIL_APP_PASSWORD + ANTHROPIC_API_KEY
 │
 ├── .github/
 │   └── workflows/
@@ -64,15 +62,20 @@ Banking_AI_ETLAutomation_Project/
 │
 ├── tests/                        # one file per table, grouped by layer
 │   ├── test_00_prerequisite.py   # runs FIRST: resets + reloads all 4 layers, gates the suite
-│   ├── SourceToPreStaging/       # test_accounts / branches / customers / transactions
-│   ├── PreStagingToStaging/      # same 4 tables
-│   └── StagingToDWH/             # same 4 tables
+│   ├── SourceToPreStaging/       # 10 tables: accounts/branches/customers/transactions + 6 new
+│   ├── PreStagingToStaging/      # same 10 tables
+│   └── StagingToDWH/             # same 10 tables
 │
-├── GoldenTestData/               # known-good baseline of Bank_Source as SQL INSERT scripts
-│   ├── generate_golden_data.py   # re-reads source (SELECT only) and regenerates the .sql files
-│   ├── 00_restore_all_source_data.sql        # delete + re-insert Source only
-│   ├── 01_SRC_Branches.sql .. 04_SRC_Transactions.sql  # per-table INSERTs (FK-safe order)
-│   └── 10_full_reset_and_reload_all_layers.sql # delete all 4 layers, reload from Source via procs
+├── database/                     # 6 NEW entities x 4 layers (DDL + load procs + seed)
+│   ├── generate_schema.py        # generator (source of truth); emits everything below
+│   ├── ddl/                      # CREATE TABLE for SRC_/PS_/STG_/Dim_/Fact_
+│   ├── procs/                    # usp_Load_* (PS direct-move, STG validate, DWH Type1/Type2/Fact)
+│   ├── data/                     # source seed data
+│   ├── 09_run_all_new_entities.sql          # master run order (SSMS / SQLCMD mode)
+│   └── README.md                 # what the 6 entities are + how to deploy
+│
+├── GoldenTestData/               # single self-contained reset script (the golden baseline)
+│   └── 10_full_reset_and_reload_all_layers.sql # delete all 4 layers -> insert golden Source -> EXEC load procs
 │
 ├── assets/                       # branding images embedded in the HTML / email report header
 │   ├── company_logo.png
@@ -158,7 +161,7 @@ It runs when `email.enabled: true` **and** an app password is available - see be
 
 ```bash
 # 1. (optional) check that all databases are reachable (read-only)
-python main.py
+python -c "from utilities import db; db.check_connections()"
 
 # 2. run all validations (reports + logs are produced automatically)
 pytest
@@ -172,7 +175,7 @@ pytest -m transformation
 ## Enabling email
 
 1. Create a Gmail **App Password** (Google Account -> Security -> App passwords).
-2. Copy `.env.example` to `.env` and set `EMAIL_APP_PASSWORD=...`.
+2. Create a `.env` file and set `EMAIL_APP_PASSWORD=...`.
 3. Set `email.enabled: true` in `config/settings.yaml`.
 
 The `sender` and `recipients` are read from `settings.yaml`; only the app password
@@ -181,20 +184,15 @@ name. Email is currently **enabled** in `settings.yaml`.
 
 ## Golden test data (`GoldenTestData/`)
 
-A known-good baseline of `Bank_Source` stored as SQL `INSERT` scripts, so any run
-can start from an identical, repeatable state.
+A known-good baseline of `Bank_Source`, stored as a single self-contained SQL
+script, so any run can start from an identical, repeatable state.
 
-* `10_full_reset_and_reload_all_layers.sql` - deletes **all four layers**
-  (warehouse first, source last), re-inserts the golden Source rows, then runs the
+* `10_full_reset_and_reload_all_layers.sql` - the **only** file in the folder. In
+  one run it: (1) deletes **all four layers** (warehouse first, source last),
+  (2) re-inserts the golden Source rows for all 10 entities, then (3) runs the
   load stored procedures to rebuild PreStaging, Staging and DWH. `SET XACT_ABORT ON`
   stops on the first error. This is the exact script `tests/test_00_prerequisite.py`
   shells out to (via `sqlcmd`) before every validation run.
-* `00_restore_all_source_data.sql` - resets **Source only**.
-* `01_..04_*.sql` - per-table INSERTs in foreign-key-safe order.
-* `generate_golden_data.py` - regenerates all `.sql` files from current source data
-  (read-only / SELECT only).
-
-See `GoldenTestData/README.md` for full usage.
 
 ## Continuous integration (`.github/workflows/python-ci.yml`)
 

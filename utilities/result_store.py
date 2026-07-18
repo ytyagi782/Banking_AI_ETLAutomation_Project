@@ -29,7 +29,7 @@ def reset():
 
 
 def add_result(layer, table, validation, status, message,
-               category="basic", source_value=None, target_value=None):
+               category="Mandatory", source_value=None, target_value=None):
     """Record the outcome of a single validation."""
     _results.append({
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),

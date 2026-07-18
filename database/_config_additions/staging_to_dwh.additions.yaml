@@ -1,0 +1,112 @@
+# Append these under `tables:` in config/staging_to_dwh.yaml
+
+  Employees:
+    source_table: "dbo.STG_Employees"
+    target_table: "dbo.DimEmployee_Type2"
+    load_proc: "dbo.usp_Load_DimEmployee_Type2"
+    dim_type: "Type2"
+    key: ["EmployeeID"]
+    target_filter: "IsCurrent = 1"
+    compare_columns:
+      - EmployeeID
+      - EmployeeCode
+      - FirstName
+      - LastName
+      - Email
+      - Phone
+      - Designation
+      - BranchID
+      - Salary
+      - HireDate
+      - Status
+    not_null_columns: ['EmployeeID', 'EmployeeCode']
+
+  Loans:
+    source_table: "dbo.STG_Loans"
+    target_table: "dbo.DimLoan_Type2"
+    load_proc: "dbo.usp_Load_DimLoan_Type2"
+    dim_type: "Type2"
+    key: ["LoanID"]
+    target_filter: "IsCurrent = 1"
+    compare_columns:
+      - LoanID
+      - LoanNumber
+      - CustomerID
+      - ProductType
+      - PrincipalAmount
+      - InterestRate
+      - TermMonths
+      - DisbursementDate
+      - OutstandingAmount
+      - Status
+    not_null_columns: ['LoanID', 'LoanNumber', 'CustomerID']
+
+  Cards:
+    source_table: "dbo.STG_Cards"
+    target_table: "dbo.DimCard_Type1"
+    load_proc: "dbo.usp_Load_DimCard_Type1"
+    dim_type: "Type1"
+    key: ["CardID"]
+    target_filter: null
+    compare_columns:
+      - CardID
+      - CardNumber
+      - AccountID
+      - CardType
+      - Network
+      - CreditLimit
+      - IssueDate
+      - ExpiryDate
+      - Status
+    not_null_columns: ['CardID', 'CardNumber', 'AccountID']
+
+  Merchants:
+    source_table: "dbo.STG_Merchants"
+    target_table: "dbo.DimMerchant_Type1"
+    load_proc: "dbo.usp_Load_DimMerchant_Type1"
+    dim_type: "Type1"
+    key: ["MerchantID"]
+    target_filter: null
+    compare_columns:
+      - MerchantID
+      - MerchantCode
+      - MerchantName
+      - Category
+      - City
+      - Country
+      - Status
+    not_null_columns: ['MerchantID', 'MerchantCode']
+
+  CardTransactions:
+    source_table: "dbo.STG_CardTransactions"
+    target_table: "dbo.FactCardTransaction"
+    load_proc: "dbo.usp_Load_FactCardTransaction"
+    dim_type: "Fact"
+    key: ["CardTransactionID"]
+    target_filter: null
+    compare_columns:
+      - CardTransactionID
+      - CardTxnNumber
+      - TxnDate
+      - Amount
+      - CurrencyCode
+      - TxnType
+      - Status
+    not_null_columns: ['CardTransactionID', 'CardTxnNumber']
+
+  LoanPayments:
+    source_table: "dbo.STG_LoanPayments"
+    target_table: "dbo.FactLoanPayment"
+    load_proc: "dbo.usp_Load_FactLoanPayment"
+    dim_type: "Fact"
+    key: ["LoanPaymentID"]
+    target_filter: null
+    compare_columns:
+      - LoanPaymentID
+      - PaymentNumber
+      - PaymentDate
+      - PaymentAmount
+      - PrincipalComponent
+      - InterestComponent
+      - PaymentMethod
+    not_null_columns: ['LoanPaymentID', 'PaymentNumber']

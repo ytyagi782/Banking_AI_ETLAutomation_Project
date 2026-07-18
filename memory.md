@@ -58,15 +58,22 @@ optional email delivery.
     whole row orange. All layers for a table share the one sheet (Layer column).
     Enabled by comparison.py returning diff_pairs (full source/target rows +
     differing columns) and full rows for duplicates.
-* `tests/` - 3 layer folders x 4 table files. Each file has a **basic** class
+* `tests/` - 3 layer folders x 10 table files. Each file has a **basic** class
   (metadata, count, duplicate, null, constraint) and a **transformation/
   data-quality** class. Markers + `pytest.ini` ordering (Layer1 -> 2 -> 3).
+* `database/` - 6 NEW entities x 4 layers added 2026-07-19 (Employees & Loans =
+  Dim*_Type2; Cards & Merchants = Dim*_Type1; CardTransactions & LoanPayments =
+  Fact*). All DDL, load procs, and seed are emitted by
+  `database/generate_schema.py` (the single source of truth; a dev tool, NOT run
+  by the framework). Config YAMLs + `pytest.ini` markers + `tests/**` are already
+  wired for all 10 tables/layer. The `.sql` must be run manually in SSMS (see
+  `database/README.md`) - the framework stays READ-ONLY.
 * `conftest.py` - clears the store at start, builds all reports at the end.
-* `main.py` - READ-ONLY entry point: checks DB connections only. It does NOT
-  load data or execute stored procedures (per user's explicit requirement the
-  framework must never run procs). `db.execute_proc` was removed too, so no
+* `db.check_connections()` (in `utilities/db.py`) - READ-ONLY connection check
+  only. It does NOT load data or execute stored procedures (per user's explicit
+  requirement the framework must never run procs). `db.execute_proc` was removed too, so no
   write/proc capability exists anywhere - the framework is SELECT-only.
-* Docs: `requirements.txt`, `architecture.md`, this `memory.md`, `.env.example`.
+* Docs: `requirements.txt`, `architecture.md`, this `memory.md`.
 
 ### Current test result (verified 2026-07-16, after package rename)
 `68 passed, 9 failed`. Failures are **data-level detections by a working
@@ -96,7 +103,7 @@ Each package has an `__init__.py`. Import as `from utilities import db`,
 
 ## How to run
 ```bash
-python main.py            # optional: check DB connections (read-only)
+python -c "from utilities import db; db.check_connections()"   # optional: check DB connections (read-only)
 pytest                    # run all validations -> logs + reports
 pytest -m transformation  # run a subset via markers
 ```
@@ -157,14 +164,14 @@ Outputs go to `agents/output/` + `agents/generated_tests/` (both git-ignored).
 
 ## Golden test data (`GoldenTestData/`) + reset-as-first-test
 
-* Known-good baseline of `Bank_Source` as SQL INSERT scripts (Branches 5,
-  Customers 10, Accounts 10, Transactions 20). File prefixes = FK-safe order.
-* `10_full_reset_and_reload_all_layers.sql` = the full pipeline reset: delete all
-  4 layers (warehouse->source), re-insert Source golden data, run the load procs
-  to rebuild PS/STG/DWH. `SET XACT_ABORT ON`. This is what
+* The folder holds **exactly one file** (per user request, 2026-07-19):
+  `10_full_reset_and_reload_all_layers.sql` - a single self-contained script.
+* It = the full pipeline reset: delete all 4 layers (warehouse->source),
+  re-insert Source golden data for all 10 entities, then run the load procs to
+  rebuild PS/STG/DWH. `SET XACT_ABORT ON`. This is what
   `tests/test_00_prerequisite.py` runs via `sqlcmd` before every suite.
-* `00_restore_all_source_data.sql` = Source only. `generate_golden_data.py`
-  regenerates the .sql from live source (read-only). See `GoldenTestData/README.md`.
+* The old `generate_golden_data.py` + per-table/00_restore files were removed;
+  the reset script is now hand-maintained (it embeds all INSERTs + EXECs).
 
 ## Branding / assets (in the reports)
 
@@ -180,7 +187,7 @@ Outputs go to `agents/output/` + `agents/generated_tests/` (both git-ignored).
 * `logging.keep_versions` is currently **3** (not 5), `version_cycle` 10.
 * `email.enabled: true` and sender is now `hrsoftwarejobsncr@gmail.com` ->
   recipient `ytyagi782@gmail.com` (settings.yaml).
-* `.env.example` documents **two** keys: `EMAIL_APP_PASSWORD` and
+* The `.env` file uses **two** keys: `EMAIL_APP_PASSWORD` and
   `ANTHROPIC_API_KEY`.
 
 Verified 2026-07-17 without an API key: all 6 agents run; generated tests

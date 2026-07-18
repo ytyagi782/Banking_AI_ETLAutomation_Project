@@ -1,0 +1,7 @@
+# Append these lines under `markers =` in pytest.ini
+    employees: Employees table tests
+    loans: Loans table tests
+    cards: Cards table tests
+    merchants: Merchants table tests
+    cardtransactions: CardTransactions table tests
+    loanpayments: LoanPayments table tests

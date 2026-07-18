@@ -81,7 +81,7 @@ def _read_side(ctx, side, columns):
                          columns=columns, where=ctx["target_where"])
 
 
-def _record(ctx, name, passed, message, category="basic"):
+def _record(ctx, name, passed, message, category="Mandatory"):
     """Log + store one validation outcome and return the pass flag."""
     status = "PASS" if passed else "FAIL"
     line = f"[{status}] {ctx['layer']} | {ctx['table']} | {name} | {message}"

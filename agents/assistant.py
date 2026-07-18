@@ -66,9 +66,9 @@ def do_defects():
 
 
 def do_check_connections():
-    # reuse main.py's read-only connection check
-    from main import check_connections
-    ok = check_connections()
+    # read-only connection check (SELECT 1 against every database)
+    from utilities import db
+    ok = db.check_connections()
     print("All connections OK." if ok else "Some connections FAILED.")
     return ok
 

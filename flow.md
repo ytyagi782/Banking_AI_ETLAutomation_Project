@@ -36,9 +36,9 @@ Bank_Source -> Bank_PreStaging -> Bank_Staging -> Bank_DWH
 ## 1. You type `pytest` in the terminal
 
 When you run `pytest` from the project root
-(`C:\Users\...\Banking_AI_ETLAutomation_Project`), pytest does **not** run
-`main.py`. `main.py` is only for the optional manual connection check
-(`python main.py`). The test run is driven entirely by pytest.
+(`C:\Users\...\Banking_AI_ETLAutomation_Project`), the test run is driven
+entirely by pytest. There is an optional manual connection check available via
+`db.check_connections()` in `utilities/db.py`, but it is not part of the test run.
 
 The very first thing pytest looks for is a configuration file.
 
@@ -299,7 +299,8 @@ It builds the connection string from `settings.yaml` and provides:
 - `read_table(db, table, columns, where)` — reads rows into a pandas DataFrame.
 - `read_query(db, sql)` — runs any `SELECT` and returns a DataFrame.
 - `get_columns(db, table)` — reads column names from `INFORMATION_SCHEMA`.
-- `test_connection(db)` — `SELECT 1` (used by `main.py`).
+- `test_connection(db)` — `SELECT 1` (used by `check_connections()`).
+- `check_connections()` — pings all four databases (read-only pre-flight check).
 
 It has **no** way to INSERT/UPDATE/DELETE or run stored procedures — by design.
 
@@ -459,7 +460,7 @@ pytest -m "basic and accounts"
 pytest --only=count_check,metadata_check
 
 # Optional: just verify all four databases are reachable (does NOT run tests)
-python main.py
+python -c "from utilities import db; db.check_connections()"
 ```
 
 In every case the **flow above is the same** — the only difference is which

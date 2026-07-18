@@ -51,7 +51,7 @@ pytest agents/generated_tests
 ## API key (optional but recommended)
 
 Every agent works **without** a key using deterministic logic derived from the
-config + database; when `ANTHROPIC_API_KEY` is set in `.env` (see `.env.example`)
+config + database; when `ANTHROPIC_API_KEY` is set in `.env`
 Claude **enriches** the output (clearer transformation rules, extra edge/negative
 test cases, execution narrative, defect root-cause & fixes, and chat mode).
 

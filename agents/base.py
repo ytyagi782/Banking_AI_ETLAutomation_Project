@@ -136,7 +136,7 @@ def versioned_output_path(prefix, ext, directory=None):
 def have_api_key():
     """True if an Anthropic API key is configured (in .env or the environment)."""
     key = os.getenv(_API_KEY_ENV, "").strip()
-    # ignore the placeholder shipped in .env.example
+    # ignore the documented placeholder value
     return bool(key) and not key.startswith("sk-ant-your_key")
 
 
@@ -144,7 +144,7 @@ def _require_key():
     if not have_api_key():
         raise RuntimeError(
             f"No Claude API key found. Set {_API_KEY_ENV} in your .env file "
-            f"(see .env.example) to enable AI generation. "
+            f"to enable AI generation. "
             f"Agents that support it will fall back to deterministic output; "
             f"this step needs the key."
         )
