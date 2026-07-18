@@ -18,6 +18,33 @@ anthropic>=0.70.0      # Claude API SDK (model: claude-opus-4-8)
 pydantic>=2.0          # structured/validated output from the model
 python-dotenv>=1.0     # load ANTHROPIC_API_KEY from the .env file
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#-------------------------------Agent & AI Assistant-------------------------------------------
 # python -m agents.assistant # for using agents
 # pytest --only=staging_to_dwh                 # all Layer 3 tests; rest SKIP
 # pytest --only=count_check                     # only count checks; rest SKIP
@@ -25,7 +52,7 @@ python-dotenv>=1.0     # load ANTHROPIC_API_KEY from the .env file
 # pytest --only="count_check or metadata_check" => this will execute for these two markers and everything else will be skipped
 
 # pytest #execute all for positive flow
-# pytest -k "not test_reset_and_reload_all_layers"  #with errors
+# pytest -k "not test_reset_and_reload_all_layers"  # with required data
 
 # ----------------------1. RUN PIPELINE-----------------------------------------
 # Step#1 -> cd C:\Users\Yogesh Tyagi\PycharmProjects\Banking_AI_ETLAutomation_Project

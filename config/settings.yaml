@@ -58,6 +58,7 @@ email:
   recipients:
     - "ytyagi782@gmail.com"
 
-  subject: "Bank ETL Automation - Test Execution Report (Final)"
+
+  subject: "Bank ETL Automation - Test Execution Report - Session Trial"
   # The app password is read from the .env file key EMAIL_APP_PASSWORD
   # (never store the real password inside this YAML file).
