@@ -240,12 +240,37 @@ def send_report(html_path, attachments=None):
         smtp_server = os.environ.get("EMAIL_SMTP_SERVER") or cfg["smtp_server"]
         smtp_port = int(os.environ.get("EMAIL_SMTP_PORT", cfg["smtp_port"]))
 
-        with _connect_smtp(smtp_server, smtp_port) as server:
-            server.login(sender, password)
-            server.send_message(msg)
+        # diagnostic: raw TCP connectivity test (helps when runners block outbound)
+        try:
+            import socket
+            with socket.create_connection((smtp_server, smtp_port), timeout=10):
+                log.info(f"SMTP raw TCP connection to {smtp_server}:{smtp_port} succeeded")
+        except Exception as e:
+            log.warning(f"SMTP raw TCP connection to {smtp_server}:{smtp_port} failed: {e}")
+
+        try:
+            server = _connect_smtp(smtp_server, smtp_port)
+        except Exception as e:
+            log.warning(f"SMTP connect failed: {e}")
+            return False
+
+        with server:
+            try:
+                log.info("Logging in to SMTP server...")
+                server.login(sender, password)
+            except Exception as login_exc:
+                log.warning(f"SMTP login failed: {login_exc}")
+                return False
+
+            try:
+                server.send_message(msg)
+            except Exception as send_exc:
+                log.warning(f"SMTP send failed: {send_exc}")
+                return False
 
         log.info(f"Email sent to {msg['To']}.")
         return True
     except Exception as e:
-        log.warning(f"Email skipped due to SMTP/network issue: {e}")
+        import traceback
+        log.warning(f"Email skipped due to unexpected error: {e}\n{traceback.format_exc()}")
         return False
