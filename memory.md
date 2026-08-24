@@ -162,7 +162,7 @@ Outputs go to `agents/output/` + `agents/generated_tests/` (both git-ignored).
 * `10_full_reset_and_reload_all_layers.sql` = the full pipeline reset: delete all
   4 layers (warehouse->source), re-insert Source golden data, run the load procs
   to rebuild PS/STG/DWH. `SET XACT_ABORT ON`. This is what
-  `tests/test_00_prerequisite.py` runs via `sqlcmd` before every suite.
+  `tests/prerequisite.py` runs via `sqlcmd` before every suite.
 * `00_restore_all_source_data.sql` = Source only. `generate_golden_data.py`
   regenerates the .sql from live source (read-only). See `GoldenTestData/README.md`.
 
