@@ -53,7 +53,7 @@ reporting:
 email:
   enabled: true           # ON - app password is provided in .env
   smtp_server: "smtp.gmail.com"
-  smtp_port: 587
+  smtp_port: 465          # Gmail SMTP SSL port; STARTTLS on 587 is also supported
   sender: "hrsoftwarejobsncr@gmail.com"
   recipients:
     - "ytyagi782@gmail.com"

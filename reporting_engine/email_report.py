@@ -148,21 +148,29 @@ def _get_sender_and_recipients(cfg):
 
 
 def _connect_smtp(server_name, port):
-    """Try the usual STARTTLS path first and fall back to implicit SSL."""
-    try:
-        server = smtplib.SMTP(server_name, port, timeout=30)
+    """Prefer explicit SSL on Gmail's 465 port and fall back to STARTTLS on 587."""
+    preferred_ports = []
+    if port in (465, 587):
+        preferred_ports = [port]
+    preferred_ports.extend([465, 587])
+    seen = set()
+
+    for candidate_port in preferred_ports:
+        if candidate_port in seen:
+            continue
+        seen.add(candidate_port)
+
         try:
+            if candidate_port == 465:
+                return smtplib.SMTP_SSL(server_name, candidate_port, timeout=30)
+            server = smtplib.SMTP(server_name, candidate_port, timeout=30)
             server.ehlo()
             server.starttls()
-        except Exception:
-            server.close()
-            raise
-        return server
-    except Exception:
-        if port != 465:
-            server = smtplib.SMTP_SSL(server_name, 465, timeout=30)
             return server
-        raise
+        except Exception:
+            continue
+
+    raise ConnectionError(f"Unable to connect to SMTP server {server_name}:{port}")
 
 
 def send_report(html_path, attachments=None):

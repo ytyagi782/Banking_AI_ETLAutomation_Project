@@ -23,6 +23,8 @@ jobs:
       EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
       EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
       EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      EMAIL_SMTP_SERVER: smtp.gmail.com
+      EMAIL_SMTP_PORT: 465
 
     steps:
 
