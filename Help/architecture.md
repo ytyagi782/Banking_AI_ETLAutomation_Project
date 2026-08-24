@@ -25,7 +25,7 @@ data or executes stored procedures.
 ## Folder structure
 
 ```
-Banking_AI_ETLAutomation_Project/
+State_Bank_Of_Noida/
 │
 ├── main.py                       # read-only entry point (checks DB connections; no data load)
 ├── conftest.py                   # pytest hooks: reset store, build reports at the end

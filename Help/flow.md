@@ -36,7 +36,7 @@ Bank_Source -> Bank_PreStaging -> Bank_Staging -> Bank_DWH
 ## 1. You type `pytest` in the terminal
 
 When you run `pytest` from the project root
-(`C:\Users\...\Banking_AI_ETLAutomation_Project`), pytest does **not** run
+(`C:\Users\...\State_Bank_Of_Noida`), pytest does **not** run
 `../main.py`. `../main.py` is only for the optional manual connection check
 (`python main.py`). The test run is driven entirely by pytest.
 
