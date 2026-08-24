@@ -62,7 +62,7 @@ def _run_reset_script(path):
 
 @pytest.mark.order(0)              # run before every order(1) test
 @pytest.mark.prerequisite
-def reset_and_reload_all_layers(request):
+def test_reset_and_reload_all_layers(request):
     """Reset all 4 layers and reload them from the golden source data."""
     log.info("=" * 70)
     log.info("PREREQUISITE - resetting & reloading ALL 4 layers")
