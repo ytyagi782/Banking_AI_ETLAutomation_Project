@@ -61,43 +61,6 @@ jobs:
           } else {
             Write-Host "EMAIL_RECEIVER NOT FOUND"
           }
-
-      - name: SMTP Debug (CI secret check)
-        shell: pwsh
-        run: |
-          python - <<'PY'
-import os, socket, smtplib
-s = os.environ.get('EMAIL_SMTP_SERVER', 'smtp.gmail.com')
-p = int(os.environ.get('EMAIL_SMTP_PORT', '465'))
-print(f"CI SMTP debug: testing raw TCP to {s}:{p}")
-try:
-    with socket.create_connection((s, p), timeout=10):
-        print('CI SMTP debug: raw TCP OK')
-except Exception as e:
-    print('CI SMTP debug: raw TCP failed:', e)
-    raise SystemExit(1)
-try:
-    if p == 465:
-        srv = smtplib.SMTP_SSL(s, p, timeout=10)
-    else:
-        srv = smtplib.SMTP(s, p, timeout=10)
-        srv.ehlo()
-        srv.starttls()
-        srv.ehlo()
-    try:
-        srv.login(os.environ.get('EMAIL_SENDER'), os.environ.get('EMAIL_APP_PASSWORD'))
-        print('CI SMTP debug: login succeeded')
-    except Exception as e:
-        print('CI SMTP debug: login failed:', e)
-    finally:
-        try:
-            srv.quit()
-        except Exception:
-            pass
-except Exception as e:
-    print('CI SMTP debug: smtp connect failed:', e)
-PY
-
       - name: Verify Databricks Connectivity
         run: |
           echo "Checking Databricks workspace configuration..."
