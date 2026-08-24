@@ -247,5 +247,5 @@ def send_report(html_path, attachments=None):
         log.info(f"Email sent to {msg['To']}.")
         return True
     except Exception as e:
-        log.error(f"Email failed: {e}")
+        log.warning(f"Email skipped due to SMTP/network issue: {e}")
         return False
