@@ -162,8 +162,8 @@ def _connect_smtp(server_name, port):
 
         try:
             if candidate_port == 465:
-                return smtplib.SMTP_SSL(server_name, candidate_port, timeout=30)
-            server = smtplib.SMTP(server_name, candidate_port, timeout=30)
+                return smtplib.SMTP_SSL(server_name, candidate_port, timeout=90)
+            server = smtplib.SMTP(server_name, candidate_port, timeout=90)
             server.ehlo()
             server.starttls()
             return server
@@ -248,28 +248,27 @@ def send_report(html_path, attachments=None):
         except Exception as e:
             log.warning(f"SMTP raw TCP connection to {smtp_server}:{smtp_port} failed: {e}")
 
-        try:
-            server = _connect_smtp(smtp_server, smtp_port)
-        except Exception as e:
-            log.warning(f"SMTP connect failed: {e}")
-            return False
-
-        with server:
+        max_attempts = 3
+        for attempt in range(1, max_attempts + 1):
             try:
-                log.info("Logging in to SMTP server...")
-                server.login(sender, password)
-            except Exception as login_exc:
-                log.warning(f"SMTP login failed: {login_exc}")
-                return False
+                server = _connect_smtp(smtp_server, smtp_port)
+            except Exception as e:
+                log.warning(f"SMTP connect failed (attempt {attempt}/{max_attempts}): {e}")
+                continue
 
             try:
-                server.send_message(msg)
-            except Exception as send_exc:
-                log.warning(f"SMTP send failed: {send_exc}")
-                return False
+                with server:
+                    log.info(f"Logging in to SMTP server... (attempt {attempt}/{max_attempts})")
+                    server.login(sender, password)
+                    server.send_message(msg)
+                log.info(f"Email sent to {msg['To']}.")
+                return True
+            except Exception as e:
+                log.warning(f"SMTP send failed (attempt {attempt}/{max_attempts}): {e}")
+                continue
 
-        log.info(f"Email sent to {msg['To']}.")
-        return True
+        log.warning(f"Email NOT sent after {max_attempts} attempts.")
+        return False
     except Exception as e:
         import traceback
         log.warning(f"Email skipped due to unexpected error: {e}\n{traceback.format_exc()}")
