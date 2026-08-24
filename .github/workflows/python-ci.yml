@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  Daily_ETL_Job:
 
     runs-on:
       - self-hosted

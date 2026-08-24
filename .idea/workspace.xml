@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="BackgroundAgentGlobalSettings">
-    <option name="selectedModelId" value="claude-opus-4-8" />
-    <option name="selectedProviderName" value="Anthropic" />
+    <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="State Bank of Noida - End to End Execution - 8" />
+    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="State Bank of Noida - End to End Execution - 9">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/python-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Banking_AI_ETLAutomation_Project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +24,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="78" />
+    <option name="cachedIndexableFilesCount" value="82" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -48,19 +52,19 @@
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
       <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0000000000000044" />
-      <entry key="M2" value="1.000000066281109" />
-      <entry key="M5" value="1.0021344352213717" />
-      <entry key="M10" value="1.1848715846356368" />
-      <entry key="M15" value="2.1290485115304776" />
-      <entry key="M30" value="10.695809054849484" />
-      <entry key="H1" value="39.02503089876411" />
-      <entry key="H2" value="97.95354109361706" />
-      <entry key="H4" value="259.93530178024105" />
-      <entry key="D1" value="4018.773558506739" />
-      <entry key="W1" value="7791.155636422221" />
+      <entry key="S10" value="1.0000000000000115" />
+      <entry key="S30" value="1.0000226138579906" />
+      <entry key="S60" value="1.0047554030313608" />
+      <entry key="M2" value="1.0689594349001463" />
+      <entry key="M5" value="1.3438455844266752" />
+      <entry key="M10" value="1.6940488156538867" />
+      <entry key="M15" value="2.4904979368123987" />
+      <entry key="M30" value="9.949248181778595" />
+      <entry key="H1" value="36.696834940203026" />
+      <entry key="H2" value="94.68355627975453" />
+      <entry key="H4" value="255.20663327664428" />
+      <entry key="D1" value="4004.8746437134328" />
+      <entry key="W1" value="7788.022725842384" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -71,34 +75,34 @@
       <entry key="S30" value="0.0" />
       <entry key="S60" value="0.0" />
       <entry key="M2" value="0.0" />
-      <entry key="M5" value="8.307469920992753E-132" />
-      <entry key="M10" value="4.988954011955782E-66" />
-      <entry key="M15" value="4.2103371994627793E-44" />
-      <entry key="M30" value="3.553755380614827E-22" />
-      <entry key="H1" value="3.265100258380203E-11" />
-      <entry key="H2" value="9.897076379121076E-6" />
-      <entry key="H4" value="0.005448959713344664" />
-      <entry key="D1" value="1.0479001685426024" />
-      <entry key="W1" value="2.5814511916941334" />
+      <entry key="M5" value="2.850402849852954E-132" />
+      <entry key="M10" value="2.9223231177532233E-66" />
+      <entry key="M15" value="2.947560318657366E-44" />
+      <entry key="M30" value="2.9734486391222038E-22" />
+      <entry key="H1" value="2.9866406842564093E-11" />
+      <entry key="H2" value="9.465643626729868E-6" />
+      <entry key="H4" value="0.005328871046382468" />
+      <entry key="D1" value="1.0440152581101745" />
+      <entry key="W1" value="2.5800818304030293" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8293195458144417" />
-      <entry key="MS500" value="0.963261894020148" />
-      <entry key="S2" value="0.9906861581012825" />
-      <entry key="S5" value="0.9962640014981925" />
-      <entry key="S10" value="0.9981302527717475" />
-      <entry key="S30" value="0.9993763620805105" />
-      <entry key="S60" value="0.9996881324095627" />
-      <entry key="M2" value="0.9998441203232379" />
-      <entry key="M5" value="1.0020720020454705" />
-      <entry key="M10" value="1.1848380072966715" />
-      <entry key="M15" value="2.12901885023821" />
-      <entry key="M30" value="10.69576485601583" />
-      <entry key="H1" value="39.02495017788249" />
-      <entry key="H2" value="97.95342480630345" />
-      <entry key="H4" value="259.9405739415748" />
-      <entry key="D1" value="4019.8210820857817" />
-      <entry key="W1" value="7793.736981785356" />
+      <entry key="MS100" value="0.9460576467255959" />
+      <entry key="MS500" value="0.9889709163809315" />
+      <entry key="S2" value="0.9972312513520695" />
+      <entry key="S5" value="0.9988915792636801" />
+      <entry key="S10" value="0.9994456359721139" />
+      <entry key="S30" value="0.9998377775887034" />
+      <entry key="S60" value="1.004661504621763" />
+      <entry key="M2" value="1.068902472211349" />
+      <entry key="M5" value="1.343805679023953" />
+      <entry key="M10" value="1.6940199055164282" />
+      <entry key="M15" value="2.4904710103340157" />
+      <entry key="M30" value="9.949208119697534" />
+      <entry key="H1" value="36.696759563164626" />
+      <entry key="H2" value="94.68344429146718" />
+      <entry key="H4" value="255.21178886065786" />
+      <entry key="D1" value="4005.918283714004" />
+      <entry key="W1" value="7790.602701891197" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -125,31 +129,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/State_Bank_of_Noida",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Banking_AI_ETLAutomation_Project\Help" />
@@ -187,7 +192,10 @@
       <workItem from="1787552622948" duration="2669000" />
       <workItem from="1787555793811" duration="93000" />
       <workItem from="1787555899369" duration="3324000" />
-      <workItem from="1787559268278" duration="12897000" />
+      <workItem from="1787559268278" duration="17163000" />
+      <workItem from="1787582031597" duration="1243000" />
+      <workItem from="1787584701589" duration="116000" />
+      <workItem from="1787584931736" duration="334000" />
     </task>
     <task id="LOCAL-00001" summary="WorkFlow_1">
       <option name="closed" value="true" />
@@ -325,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787574678185</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="State Bank of Noida - End to End Execution - 9">
+      <option name="closed" value="true" />
+      <created>1787575141378</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1787575141378</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,6 +373,7 @@
     <MESSAGE value="State Bank of Noida - End to End Execution - 6" />
     <MESSAGE value="State Bank of Noida - End to End Execution - 7" />
     <MESSAGE value="State Bank of Noida - End to End Execution - 8" />
-    <option name="LAST_COMMIT_MESSAGE" value="State Bank of Noida - End to End Execution - 8" />
+    <MESSAGE value="State Bank of Noida - End to End Execution - 9" />
+    <option name="LAST_COMMIT_MESSAGE" value="State Bank of Noida - End to End Execution - 9" />
   </component>
 </project>
