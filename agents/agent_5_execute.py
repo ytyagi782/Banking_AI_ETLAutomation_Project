@@ -125,7 +125,7 @@ def _parse_junit(junit_path):
 
 def _templated_summary(target, totals, failures):
     lines = [
-        f"# ETL Test Execution Summary",
+        "# ETL Test Execution Summary",
         "",
         f"- **Target:** {target}",
         f"- **Total:** {totals['total']}  |  **Passed:** {totals['passed']}  "

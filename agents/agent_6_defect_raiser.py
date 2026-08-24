@@ -384,7 +384,7 @@ def _write_excel(tickets, ver):
 
 
 def _write_md(tickets, results, ver):
-    lines = [f"# Defect Report", "",
+    lines = ["# Defect Report", "",
              f"- Source run target: **{results.get('target')}**",
              f"- Failures: **{len(tickets)}**", ""]
     if not tickets:
@@ -397,7 +397,7 @@ def _write_md(tickets, results, ver):
             f"- **Severity:** {t['Severity']}  |  **Status:** {t['Status']}",
             f"- **Layer / Table:** {t['Layer']} / {t['Table']}",
             f"- **Expected:** {t['Expected Result']}",
-            f"- **Actual (data):**",
+            "- **Actual (data):**",
             "",
             "  ```",
             *[f"  {ln}" for ln in actual.splitlines()],

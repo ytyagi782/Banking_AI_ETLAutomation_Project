@@ -92,7 +92,7 @@ def column_metadata(logical_db, table):
             raise ValueError("no columns returned")
         _meta_cache[cache_key] = cols
         return cols
-    except Exception as exc:  # DB down / table missing -> YAML fallback
+    except Exception:  # DB down / table missing -> YAML fallback
         cols = _meta_from_yaml_fallback(table)
         _meta_cache[cache_key] = cols
         return cols
