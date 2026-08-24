@@ -1,0 +1,25 @@
+# Databricks configuration template
+name: "databricks"
+provider: "databricks"
+enabled: true
+
+connection:
+  host: "https://dbc-12345678-9876.cloud.databricks.com"
+  http_path: "/sql/1.0/warehouses/7d2e9f4c3b1a8e6d"
+  token: "dapi1234567890abcdef1234567890xyz9876543210abcde"
+  catalog: "banking_prod"
+  schema: "raw_landing"
+  warehouse_id: "7d2e9f4c3b1a8e6d"
+  cluster_id: "0612-123456-abc123"
+  auth_type: "pat"
+  http_timeout_seconds: 600
+
+etl:
+  staging_schema: "raw_landing"
+  target_schema: "analytics_curated"
+  file_format: "delta"
+  write_mode: "append"
+  sample_tables:
+    - "banking_prod.raw_landing.dim_customers"
+    - "banking_prod.raw_landing.fact_transactions"
+    - "banking_prod.raw_landing.dim_accounts"

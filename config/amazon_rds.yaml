@@ -1,0 +1,27 @@
+# Amazon RDS configuration template
+name: "amazon_rds"
+provider: "amazon_rds"
+enabled: true
+
+connection:
+  engine: "postgresql"
+  host: "banking-prod-db.cluster-cxabc123xyz.us-east-1.rds.amazonaws.com"
+  port: 5432
+  database: "banking_prod"
+  user: "banking_app_user"
+  password: "RdsProd!2026#SecurePass"
+  ssl_mode: "require"
+  region: "us-east-1"
+  schema: "public"
+
+etl:
+  source_schema: "source_bank"
+  landing_schema: "landing_stage"
+  target_schema: "analytics_curated"
+  pool_min_size: 1
+  pool_max_size: 10
+  connection_timeout_seconds: 30
+  sample_tables:
+    - "source_bank.customer_source"
+    - "landing_stage.customer_stg"
+    - "analytics_curated.dim_customer"

@@ -1,0 +1,25 @@
+# Amazon Redshift configuration template
+name: "amazon_redshift"
+provider: "amazon_redshift"
+enabled: true
+
+connection:
+  host: "banking-prod-redshift-cluster.abc123xyz.us-east-1.redshift.amazonaws.com"
+  port: 5439
+  database: "banking_prod"
+  user: "etl_loader_user"
+  password: "Redshift!2026#ProdLoad"
+  ssl_mode: "require"
+  region: "us-east-1"
+  schema: "public"
+
+etl:
+  staging_schema: "staging_raw"
+  analytics_schema: "analytics_curated"
+  copy_format: "CSV"
+  unload_format: "PARQUET"
+  workload_group: "default"
+  sample_tables:
+    - "staging_raw.dim_customers"
+    - "staging_raw.fact_transactions"
+    - "analytics_curated.customer_master"

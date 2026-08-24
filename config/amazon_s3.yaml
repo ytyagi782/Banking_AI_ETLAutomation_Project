@@ -1,0 +1,26 @@
+# Amazon S3 configuration template
+name: "amazon_s3"
+provider: "amazon_s3"
+enabled: true
+
+connection:
+  region: "us-east-1"
+  bucket: "banking-raw-data-prod-us-east-1"
+  prefix: "raw/banking/2026/08/24/"
+  access_key_id: "AKIA2Q7YQH7J7B4JVR7XK"
+  secret_access_key: "u5M2w9lN7oQ1rP8yC6sD3fA4gH2jK7mL9pQ0xV1z"
+  session_token: "FwoGZXIvYXdzEJ7...sample-session-token"
+  endpoint_url: ""
+  file_format: "parquet"
+  compression: "snappy"
+
+etl:
+  source_prefix: "raw/banking/"
+  archive_prefix: "archive/banking/"
+  error_prefix: "errors/banking/"
+  encryption: "AES256"
+  partitioning: "date="
+  sample_objects:
+    - "raw/banking/customers/2026/08/24/customers_20260824.parquet"
+    - "raw/banking/accounts/2026/08/24/accounts_20260824.parquet"
+    - "raw/banking/transactions/2026/08/24/transactions_20260824.parquet"

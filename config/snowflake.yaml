@@ -1,0 +1,26 @@
+# Snowflake configuration template
+name: "snowflake"
+provider: "snowflake"
+enabled: true
+
+connection:
+  account: "xy12345.us-east-1"
+  user: "BANKING_ETL_USER"
+  password: "SecurePass!2026#BankingETL"
+  role: "SYSADMIN"
+  warehouse: "BANKING_WH_XL"
+  database: "BANKING_PROD"
+  schema: "PUBLIC"
+  auth_type: "user_password"
+  login_timeout_seconds: 300
+
+etl:
+  stage_schema: "RAW_STAGE"
+  curated_schema: "CURATED_DWH"
+  warehouse_size: "XLARGE"
+  file_format: "PARQUET"
+  loading_method: "COPY INTO"
+  sample_tables:
+    - "BANKING_PROD.RAW_STAGE.CUSTOMER_RAW"
+    - "BANKING_PROD.RAW_STAGE.ACCOUNT_RAW"
+    - "BANKING_PROD.RAW_STAGE.TRANSACTION_RAW"
