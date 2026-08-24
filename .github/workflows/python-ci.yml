@@ -113,10 +113,20 @@ jobs:
         run: |
           pytest
 
-      - name: Fail workflow only on infrastructure errors (not data-mismatch test failures)
+      - name: Publish Test Results to Run Summary
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path "reports/step_summary.md") {
+            Get-Content "reports/step_summary.md" | Add-Content -Path $env:GITHUB_STEP_SUMMARY
+          } else {
+            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "Test summary not found (reports/step_summary.md missing)."
+          }
+
+      - name: Note data-mismatch test failures (does not fail the pipeline)
         if: steps.pytest.outcome == 'failure'
         run: |
-          Write-Host "PyTest reported test failures (real data mismatches) - see the emailed / uploaded reports for details."
+          Write-Host "PyTest reported test failures (real data mismatches) - see the run summary, uploaded reports, and email."
           Write-Host "The workflow is not blocked by this since ETL data-mismatch failures are expected and reported separately."
 
       - name: Upload Reports

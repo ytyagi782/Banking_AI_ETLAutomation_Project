@@ -75,6 +75,69 @@ def _prune_old_reports(reports_dir):
                 pass
 
 
+def _write_step_summary(reports_dir):
+    """
+    Write a small Markdown summary (counts + failure list) to
+    reports/step_summary.md so CI can publish it to the GitHub run page
+    (GITHUB_STEP_SUMMARY). Purely informational - never raises.
+    """
+    try:
+        counts = result_store.summary_counts()
+        by_layer = result_store.summary_by_layer()
+        failures = result_store.get_failures()
+
+        lines = [
+            "## Banking ETL Automation - Test Results",
+            "",
+            f"**Total:** {counts['total']} &nbsp; "
+            f"✅ **Passed:** {counts['passed']} &nbsp; "
+            f"❌ **Failed:** {counts['failed']} &nbsp; "
+            f"⏭️ **Skipped:** {counts['skipped']} &nbsp; "
+            f"**Pass rate:** {counts['pass_rate']}%",
+            "",
+            "### Results by layer",
+            "",
+            "| Layer | Passed | Failed | Skipped |",
+            "| --- | ---: | ---: | ---: |",
+        ]
+        for layer, g in by_layer.items():
+            lines.append(
+                f"| {layer} | {g['passed']} | {g['failed']} | {g['skipped']} |"
+            )
+
+        if failures:
+            lines += [
+                "",
+                "### Failed validations (data mismatches)",
+                "",
+                "| Layer | Table | Validation | Message |",
+                "| --- | --- | --- | --- |",
+            ]
+            for f in failures:
+                msg = str(f["message"]).replace("|", "\\|")
+                lines.append(
+                    f"| {f['layer']} | {f['table']} | {f['validation']} | {msg} |"
+                )
+        else:
+            lines += ["", "All validations passed. 🎉"]
+
+        lines += [
+            "",
+            "> Data-mismatch failures are expected findings for an ETL "
+            "validation suite and do not fail the pipeline. Full details are "
+            "in the attached Excel/HTML reports.",
+            "",
+        ]
+
+        path = os.path.join(reports_dir, "step_summary.md")
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write("\n".join(lines))
+        return path
+    except Exception as e:
+        log.warning(f"Step summary generation skipped: {e}")
+        return None
+
+
 def generate_all():
     """Build summary + detailed + html reports, then try to email. Returns paths."""
     reports_dir = _reports_dir()
@@ -101,6 +164,9 @@ def generate_all():
              f"failed={counts['failed']} pass_rate={counts['pass_rate']}%")
 
     email_report.send_report(html_path, attachments=[summary_path, detailed_path])
+
+    # a Markdown snapshot for the GitHub Actions run page (GITHUB_STEP_SUMMARY)
+    _write_step_summary(reports_dir)
 
     # keep the folder to just the three reports (newest of each)
     _prune_old_reports(reports_dir)
