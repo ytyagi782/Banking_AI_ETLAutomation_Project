@@ -1,4 +1,4 @@
-# Execution Flow — Banking ETL Automation Framework
+# Execution Flow — State_Bank_Of_Noida Framework
 
 This document explains, **step by step**, what happens when you run the
 `pytest` command in this project. It is written so that **anyone** — even

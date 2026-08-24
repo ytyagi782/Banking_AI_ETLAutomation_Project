@@ -56,7 +56,7 @@ FONT_BRAND_ROLE = Font(size=9, color="C3D0E8")                   # author role
 # rows occupied by the banner; content is written below it
 _BRAND_ROWS = 5
 _BRAND_SPAN = 8             # default number of columns the banner spans
-DEFAULT_TITLE = "Banking ETL Automation - Test Execution Report"
+DEFAULT_TITLE = "State_Bank_Of_Noida - Test Execution Report"
 
 
 def _safe(value):
@@ -203,7 +203,7 @@ def build_summary_report(path):
 
     counts = result_store.summary_counts()
     ws.cell(row=1 + off, column=1,
-            value="Banking ETL Automation - Summary Report").font = FONT_TITLE
+            value="State_Bank_Of_Noida - Summary Report").font = FONT_TITLE
     ws.cell(row=2 + off, column=1,
             value=f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 

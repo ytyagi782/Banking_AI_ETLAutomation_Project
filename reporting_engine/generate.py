@@ -87,7 +87,7 @@ def _write_step_summary(reports_dir):
         failures = result_store.get_failures()
 
         lines = [
-            "## Banking ETL Automation - Test Results",
+            "## State_Bank_Of_Noida - Test Results",
             "",
             f"**Total:** {counts['total']} &nbsp; "
             f"✅ **Passed:** {counts['passed']} &nbsp; "

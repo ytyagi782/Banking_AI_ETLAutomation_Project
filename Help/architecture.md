@@ -1,4 +1,4 @@
-# Banking ETL Automation Framework - Architecture
+# State_Bank_Of_Noida Framework - Architecture
 
 A modular, config-driven framework that **validates** a banking ETL pipeline
 built on SQL Server. It checks that data moves correctly through four layers:

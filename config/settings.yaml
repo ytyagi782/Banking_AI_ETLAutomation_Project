@@ -1,5 +1,5 @@
 # ==========================================================================
-# GLOBAL SETTINGS  -  Banking ETL Automation Framework
+# GLOBAL SETTINGS  -  State_Bank_Of_Noida Framework
 # Everything that is common to the whole project lives here.
 # Layer-specific table details live in the other YAML files in this folder.
 # ==========================================================================
@@ -59,6 +59,6 @@ email:
     - "ytyagi782@gmail.com"
 
 
-  subject: "Bank ETL Automation - Test Execution Report - (Batch#198)"
+  subject: "State_Bank_Of_Noida - Test Execution Report - (Batch#198)"
   # The app password is read from the .env file key EMAIL_APP_PASSWORD
   # (never store the real password inside this YAML file).

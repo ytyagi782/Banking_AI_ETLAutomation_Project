@@ -140,7 +140,7 @@ Outputs go to `agents/output/` + `agents/generated_tests/` (both git-ignored).
 
 ## CI/CD - GitHub Actions (DONE - added 2026-07-17)
 
-* Workflow: `.github/workflows/python-ci.yml` (name "Banking AI ETL Automation").
+* Workflow: `.github/workflows/python-ci.yml` (name "State Bank of Noida").
 * Triggers: push to `main`, PR to `main`, and manual `workflow_dispatch`.
 * Runner: **self-hosted, Windows, X64** (labels `[self-hosted, Windows, X64]`) -
   required because the prerequisite test rebuilds all 4 SQL Server DBs via

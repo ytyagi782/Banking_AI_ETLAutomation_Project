@@ -1,7 +1,7 @@
 """
 main.py
 -------
-Simple entry point for the Banking ETL Automation *testing* framework.
+Simple entry point for the State_Bank_Of_Noida *testing* framework.
 
 This framework is READ-ONLY. It does NOT load data and it does NOT execute any
 stored procedures - it only connects to SQL Server, reads data with SELECT

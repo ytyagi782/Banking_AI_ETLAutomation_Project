@@ -306,7 +306,7 @@ def main():
                     default="existing", help="execution target for --pipeline")
     args = ap.parse_args()
 
-    base.banner("Banking ETL Automation - AI Assistant")
+    base.banner("State_Bank_Of_Noida - AI Assistant")
     if args.pipeline:
         do_full_pipeline(target=args.target)
     elif args.chat:
