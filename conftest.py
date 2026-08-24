@@ -10,8 +10,6 @@ Wires pytest into the framework:
 """
 
 import os
-import shutil
-import subprocess
 import sys
 
 import pytest
@@ -19,12 +17,8 @@ import pytest
 # make sure the project root is importable (framework package)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from utilities import config_loader, result_store
+from utilities import result_store
 from utilities.logger import get_logger
-
-RESET_SCRIPT = config_loader.abs_path(
-    "GoldenTestData", "10_full_reset_and_reload_all_layers.sql"
-)
 
 
 def pytest_addoption(parser):
@@ -130,59 +124,6 @@ def pytest_sessionstart(session):
     session.prerequisite_ok = True
 
     log.info("pytest session started - result store cleared.")
-
-
-@pytest.fixture(scope="session", autouse=True)
-def _reset_and_reload_all_layers():
-    """
-    Runs ONCE, automatically, before any test in the session.
-
-    Resets all 4 layers (Source, PreStaging, Staging, DWH) and reloads them
-    from the golden test data so every test run starts from a known, clean
-    state - no leftover/duplicate rows from a previous run.
-
-    This replaces the old test_00_prerequisite.py test case: it is baked
-    permanently into the framework instead of relying on a separate,
-    collectible test.
-    """
-    log = get_logger()
-
-    if shutil.which("sqlcmd") is None:
-        pytest.exit(
-            "sqlcmd not found on PATH - it is required to reset/reload the "
-            "test databases before the suite can run.",
-            returncode=1,
-        )
-
-    if not os.path.exists(RESET_SCRIPT):
-        pytest.exit(f"reset script not found: {RESET_SCRIPT}", returncode=1)
-
-    db_cfg = config_loader.get_settings()["database"]
-    cmd = ["sqlcmd", "-S", db_cfg["server"], "-b", "-C", "-i", RESET_SCRIPT]
-    if db_cfg.get("trusted_connection", True):
-        cmd.append("-E")
-
-    timeout = max(db_cfg.get("timeout", 30), 120)
-
-    log.info("=" * 70)
-    log.info("AUTO RESET - resetting & reloading ALL 4 layers before the suite")
-    log.info(f"  script: {RESET_SCRIPT}")
-
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-
-    if result.stdout and result.stdout.strip():
-        log.info("sqlcmd output:\n" + result.stdout.strip())
-
-    if result.returncode != 0:
-        if result.stderr and result.stderr.strip():
-            log.error("sqlcmd errors:\n" + result.stderr.strip())
-        pytest.exit(
-            f"Prerequisite reset/reload failed (sqlcmd exit code = {result.returncode}). "
-            f"Data is not in a known state - aborting the whole run.",
-            returncode=1,
-        )
-
-    log.info("[PASS] all 4 layers reset & reloaded from golden source data")
 
 
 def pytest_sessionfinish(session, exitstatus):
