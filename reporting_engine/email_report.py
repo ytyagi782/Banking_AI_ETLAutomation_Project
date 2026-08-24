@@ -135,6 +135,36 @@ def _read_env_password():
     return None
 
 
+def _get_sender_and_recipients(cfg):
+    """Prefer GitHub Actions / environment values but keep YAML as fallback."""
+    sender = (os.environ.get("EMAIL_SENDER") or cfg.get("sender") or "").strip()
+    recipients_value = os.environ.get("EMAIL_RECEIVER") or ""
+    recipients = []
+    if recipients_value:
+        recipients = [item.strip() for item in re.split(r"[;,]", recipients_value) if item.strip()]
+    if not recipients:
+        recipients = [item.strip() for item in (cfg.get("recipients") or []) if item.strip()]
+    return sender, recipients
+
+
+def _connect_smtp(server_name, port):
+    """Try the usual STARTTLS path first and fall back to implicit SSL."""
+    try:
+        server = smtplib.SMTP(server_name, port, timeout=30)
+        try:
+            server.ehlo()
+            server.starttls()
+        except Exception:
+            server.close()
+            raise
+        return server
+    except Exception:
+        if port != 465:
+            server = smtplib.SMTP_SSL(server_name, 465, timeout=30)
+            return server
+        raise
+
+
 def send_report(html_path, attachments=None):
     """
     Send the report by email.
@@ -150,6 +180,11 @@ def send_report(html_path, attachments=None):
     password = _read_env_password()
     if not password:
         log.warning("Email skipped (no EMAIL_APP_PASSWORD found in .env / environment).")
+        return False
+
+    sender, recipients = _get_sender_and_recipients(cfg)
+    if not sender or not recipients:
+        log.warning("Email skipped (missing sender or recipient configuration).")
         return False
 
     try:
@@ -172,8 +207,8 @@ def send_report(html_path, attachments=None):
 
         msg = EmailMessage()
         msg["Subject"] = cfg["subject"]
-        msg["From"] = cfg["sender"]
-        msg["To"] = ", ".join(cfg["recipients"])
+        msg["From"] = sender
+        msg["To"] = ", ".join(recipients)
         msg.set_content(plain)
         msg.add_alternative(body, subtype="html")
 
@@ -194,9 +229,11 @@ def send_report(html_path, attachments=None):
                 msg.add_attachment(data, maintype="application",
                                    subtype="octet-stream", filename=fname)
 
-        with smtplib.SMTP(cfg["smtp_server"], cfg["smtp_port"], timeout=30) as server:
-            server.starttls()
-            server.login(cfg["sender"], password)
+        smtp_server = os.environ.get("EMAIL_SMTP_SERVER") or cfg["smtp_server"]
+        smtp_port = int(os.environ.get("EMAIL_SMTP_PORT", cfg["smtp_port"]))
+
+        with _connect_smtp(smtp_server, smtp_port) as server:
+            server.login(sender, password)
             server.send_message(msg)
 
         log.info(f"Email sent to {msg['To']}.")
