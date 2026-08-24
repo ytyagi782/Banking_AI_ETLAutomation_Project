@@ -187,7 +187,7 @@
       <workItem from="1787552622948" duration="2669000" />
       <workItem from="1787555793811" duration="93000" />
       <workItem from="1787555899369" duration="3324000" />
-      <workItem from="1787559268278" duration="12106000" />
+      <workItem from="1787559268278" duration="12440000" />
     </task>
     <task id="LOCAL-00001" summary="WorkFlow_1">
       <option name="closed" value="true" />
@@ -309,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787571816183</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="State Bank of Noida - End to End Execution - 7">
+      <option name="closed" value="true" />
+      <created>1787574613890</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1787574613890</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
