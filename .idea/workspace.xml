@@ -3,18 +3,31 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="ALL" />
   </component>
+  <component name="BackgroundAgentGlobalSettings">
+    <option name="selectedModelId" value="claude-sonnet-5" />
+    <option name="selectedProviderName" value="Anthropic" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="WorkFlow_2">
+    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="WorkFlow_3">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/python-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/architecture.md" beforeDir="false" afterPath="$PROJECT_DIR$/Help/architecture.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flow.md" beforeDir="false" afterPath="$PROJECT_DIR$/Help/flow.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory.md" beforeDir="false" afterPath="$PROJECT_DIR$/memory.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Banking_AI_ETLAutomation_Project" value="3ILsBgIg1A6KgEOMJVGWF3zbYlc" />
+    </persistenceIdMap>
+  </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="74" />
+    <option name="cachedIndexableFilesCount" value="79" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -38,23 +51,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.009820491914348" />
-      <entry key="MS500" value="1.4391947941623506" />
-      <entry key="S2" value="2.7178092919610064" />
-      <entry key="S5" value="4.213918543228278" />
-      <entry key="S10" value="5.314083004512685" />
-      <entry key="S30" value="6.858023373670775" />
-      <entry key="S60" value="7.679977468816473" />
-      <entry key="M2" value="8.26200715163487" />
-      <entry key="M5" value="9.779531391184065" />
-      <entry key="M10" value="15.631450625284318" />
-      <entry key="M15" value="21.466238432658155" />
-      <entry key="M30" value="34.14706294973152" />
-      <entry key="H1" value="56.05934386691844" />
-      <entry key="H2" value="99.33416523738003" />
-      <entry key="H4" value="319.35548493909823" />
-      <entry key="D1" value="4414.452696214692" />
-      <entry key="W1" value="7753.072972360664" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.000000000000003" />
+      <entry key="S2" value="1.0005887505921023" />
+      <entry key="S5" value="1.1442019347651557" />
+      <entry key="S10" value="1.9830391388709994" />
+      <entry key="S30" value="4.907627159665642" />
+      <entry key="S60" value="6.7971832028054555" />
+      <entry key="M2" value="8.17817606126087" />
+      <entry key="M5" value="10.244628444864638" />
+      <entry key="M10" value="16.19794928963011" />
+      <entry key="M15" value="22.067504119865568" />
+      <entry key="M30" value="34.8284363969003" />
+      <entry key="H1" value="56.797185761716676" />
+      <entry key="H2" value="100.10162797217706" />
+      <entry key="H4" value="319.98146678040354" />
+      <entry key="D1" value="4414.590599569959" />
+      <entry key="W1" value="7753.856655052302" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -64,35 +77,35 @@
       <entry key="S10" value="0.0" />
       <entry key="S30" value="0.0" />
       <entry key="S60" value="0.0" />
-      <entry key="M2" value="1.3538441198844551E-285" />
-      <entry key="M5" value="2.173565326347751E-114" />
-      <entry key="M10" value="2.551887123991577E-57" />
-      <entry key="M15" value="2.69288734780687E-38" />
-      <entry key="M30" value="2.8420923364379647E-19" />
-      <entry key="H1" value="9.233616817275689E-10" />
-      <entry key="H2" value="5.2631359130883457E-5" />
-      <entry key="H4" value="0.012565576792958185" />
-      <entry key="D1" value="1.204475717141387" />
-      <entry key="W1" value="2.633320088529793" />
+      <entry key="M2" value="1.1762434083720663E-285" />
+      <entry key="M5" value="2.054679620011224E-114" />
+      <entry key="M10" value="2.4811165664017566E-57" />
+      <entry key="M15" value="2.6428670990602586E-38" />
+      <entry key="M30" value="2.815572747174304E-19" />
+      <entry key="H1" value="9.190436370948621E-10" />
+      <entry key="H2" value="5.250815124679882E-5" />
+      <entry key="H4" value="0.012550860421651974" />
+      <entry key="D1" value="1.2042404955758006" />
+      <entry key="W1" value="2.633246616667006" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9289165234516074" />
-      <entry key="MS500" value="1.4125208427274838" />
-      <entry key="S2" value="2.7038989919886958" />
-      <entry key="S5" value="4.204905502475551" />
-      <entry key="S10" value="5.308233166976355" />
-      <entry key="S30" value="6.855326395699081" />
-      <entry key="S60" value="7.678400751746608" />
-      <entry key="M2" value="8.261133048729766" />
-      <entry key="M5" value="9.779024127104648" />
-      <entry key="M10" value="15.63090106808686" />
-      <entry key="M15" value="21.465690137165417" />
-      <entry key="M30" value="34.14661664811944" />
-      <entry key="H1" value="56.05901596131777" />
-      <entry key="H2" value="99.33397006066647" />
-      <entry key="H4" value="319.36779389654015" />
-      <entry key="D1" value="4415.656758922492" />
-      <entry key="W1" value="7755.706187226935" />
+      <entry key="MS100" value="0.9265880618903709" />
+      <entry key="MS500" value="0.9848664428955537" />
+      <entry key="S2" value="0.9967806853800446" />
+      <entry key="S5" value="1.142369743306384" />
+      <entry key="S10" value="1.9811948205211911" />
+      <entry key="S30" value="4.905836329266394" />
+      <entry key="S60" value="6.795865958827403" />
+      <entry key="M2" value="8.177353088922768" />
+      <entry key="M5" value="10.2441235111157" />
+      <entry key="M10" value="16.19740226548499" />
+      <entry key="M15" value="22.066957537171387" />
+      <entry key="M30" value="34.82799002384213" />
+      <entry key="H1" value="56.79685727159909" />
+      <entry key="H2" value="100.10143219338998" />
+      <entry key="H4" value="319.9937607925307" />
+      <entry key="D1" value="4415.794427048602" />
+      <entry key="W1" value="7756.48979643704" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -100,32 +113,55 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3GaC8sD73ge8uwyChR2bJ4DJq0k" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Banking_AI_ETLAutomation_Project\Help" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -155,7 +191,9 @@
       <workItem from="1784376383339" duration="14000" />
       <workItem from="1784376429242" duration="3300000" />
       <workItem from="1787468058171" duration="6334000" />
-      <workItem from="1787552622948" duration="1196000" />
+      <workItem from="1787552622948" duration="2669000" />
+      <workItem from="1787555793811" duration="93000" />
+      <workItem from="1787555899369" duration="1273000" />
     </task>
     <task id="LOCAL-00001" summary="WorkFlow_1">
       <option name="closed" value="true" />
@@ -173,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787469109910</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="WorkFlow_3">
+      <option name="closed" value="true" />
+      <created>1787554308439</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1787554308439</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +239,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WorkFlow_1" />
     <MESSAGE value="WorkFlow_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="WorkFlow_2" />
+    <MESSAGE value="WorkFlow_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="WorkFlow_3" />
   </component>
 </project>

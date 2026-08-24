@@ -66,7 +66,7 @@ optional email delivery.
   load data or execute stored procedures (per user's explicit requirement the
   framework must never run procs). `db.execute_proc` was removed too, so no
   write/proc capability exists anywhere - the framework is SELECT-only.
-* Docs: `requirements.txt`, `architecture.md`, this `memory.md`, `.env.example`.
+* Docs: `requirements.txt`, `Help/architecture.md`, this `memory.md`, `.env.example`.
 
 ### Current test result (verified 2026-07-16, after package rename)
 `68 passed, 9 failed`. Failures are **data-level detections by a working

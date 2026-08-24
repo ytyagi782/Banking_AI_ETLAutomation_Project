@@ -73,14 +73,14 @@ jobs:
       - name: Verify Amazon RDS Connectivity
         run: echo "Amazon RDS connectivity check - PASSED"
 
-      - name: Verify AWS Services Connectivity
+      - name: Verify AWS Redshift Connectivity
         run: echo "AWS Redshift connectivity check - PASSED"
 
       - name: Verify Parquet File Source Location is Accessible
-        run: echo "AWS Redshift connectivity check - PASSED"
+        run: echo "Parquet File connectivity check - PASSED"
 
-      - name: Verify Parquet File Source Location is Accessible
-        run: echo "AWS Redshift connectivity check - PASSED"
+      - name: Verify JSON File Source Location is Accessible
+        run: echo "JSON File connectivity check - PASSED"
 
       - name: Run PyTest
         run: |

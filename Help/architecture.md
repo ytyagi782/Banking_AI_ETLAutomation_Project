@@ -84,7 +84,7 @@ Banking_AI_ETLAutomation_Project/
 
 ---
 
-## Reusable validations (`validations/validations.py`)
+## Reusable validations (`../validations/validations.py`)
 
 Every test case simply calls one of these and asserts the result. Each one
 logs a PASS/FAIL line and records the outcome for the reports.
@@ -142,7 +142,7 @@ comparison is case-insensitive because standardising case is an intended step.
 3. **Management report** (`ManagementReport_<ts>.html`) - clean HTML page with KPI
    cards and tables, easy to share with management. The header is **branded** from
    `reporting.branding` in `settings.yaml` (company name + logo on the left, author
-   name/role + photo on the right); the images in `assets/` are embedded as base64
+   name/role + photo on the right); the images in `../assets` are embedded as base64
    so the file stays self-contained.
 
 All three reports are **version-cycled** the same way as the logs: `reporting.version_cycle`
@@ -172,14 +172,14 @@ pytest -m transformation
 ## Enabling email
 
 1. Create a Gmail **App Password** (Google Account -> Security -> App passwords).
-2. Copy `.env.example` to `.env` and set `EMAIL_APP_PASSWORD=...`.
-3. Set `email.enabled: true` in `config/settings.yaml`.
+2. Copy `../.env.example` to `.env` and set `EMAIL_APP_PASSWORD=...`.
+3. Set `email.enabled: true` in `../config/settings.yaml`.
 
 The `sender` and `recipients` are read from `settings.yaml`; only the app password
 comes from `.env` (key `EMAIL_APP_PASSWORD`) or an environment variable of the same
 name. Email is currently **enabled** in `settings.yaml`.
 
-## Golden test data (`GoldenTestData/`)
+## Golden test data (`../GoldenTestData`)
 
 A known-good baseline of `Bank_Source` stored as SQL `INSERT` scripts, so any run
 can start from an identical, repeatable state.
@@ -187,16 +187,16 @@ can start from an identical, repeatable state.
 * `10_full_reset_and_reload_all_layers.sql` - deletes **all four layers**
   (warehouse first, source last), re-inserts the golden Source rows, then runs the
   load stored procedures to rebuild PreStaging, Staging and DWH. `SET XACT_ABORT ON`
-  stops on the first error. This is the exact script `tests/test_00_prerequisite.py`
+  stops on the first error. This is the exact script `../tests/test_00_prerequisite.py`
   shells out to (via `sqlcmd`) before every validation run.
 * `00_restore_all_source_data.sql` - resets **Source only**.
 * `01_..04_*.sql` - per-table INSERTs in foreign-key-safe order.
 * `generate_golden_data.py` - regenerates all `.sql` files from current source data
   (read-only / SELECT only).
 
-See `GoldenTestData/README.md` for full usage.
+See `../GoldenTestData/README.md` for full usage.
 
-## Continuous integration (`.github/workflows/python-ci.yml`)
+## Continuous integration (`../.github/workflows/python-ci.yml`)
 
 CI runs the whole suite in GitHub Actions:
 
@@ -220,7 +220,7 @@ edit YAML only.
 
 ---
 
-## AI Agents (`agents/`)
+## AI Agents (`../agents`)
 
 A layer of AI agents sits **on top of** this framework and automates the whole
 ETL-testing lifecycle. Guiding rule: **Claude generates & reasons; the framework
@@ -244,7 +244,7 @@ agents/
 ```
 
 Run `python -m agents.assistant` for the menu, or a single agent with
-`python -m agents.agent_1_mapping_doc` etc. See `agents/README.md` for details.
+`python -m agents.agent_1_mapping_doc` etc. See `../agents/README.md` for details.
 The agents stay **read-only** against the DB (only SELECT / INFORMATION_SCHEMA);
 generated INSERT scripts are written to disk and run by you, not executed
 automatically.
