@@ -7,11 +7,19 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="State Bank of Noida - End to End Execution - 9">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/python-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Banking_AI_ETLAutomation_Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="State Bank of Noida - End to End Execution - 10">
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Accounts/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Beneficiaries/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Deposits/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Fraud and AML/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Loans/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Payments and Fund Transfers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Trade Finance/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/Transactions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Business_Logics/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/replay_pid37100.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,11 +29,19 @@
   <component name="CopilotPersistence">
     <persistenceIdMap>
       <entry key="_C:/Banking_AI_ETLAutomation_Project" value="3ILsBgIg1A6KgEOMJVGWF3zbYlc" />
+      <entry key="_C:/State_Bank_of_Noida" value="3IMvSrwGHbG7NnG7QucLKPJwfAv" />
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="82" />
+    <option name="cachedIndexableFilesCount" value="86" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,21 +66,21 @@
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000000000115" />
-      <entry key="S30" value="1.0000226138579906" />
-      <entry key="S60" value="1.0047554030313608" />
-      <entry key="M2" value="1.0689594349001463" />
-      <entry key="M5" value="1.3438455844266752" />
-      <entry key="M10" value="1.6940488156538867" />
-      <entry key="M15" value="2.4904979368123987" />
-      <entry key="M30" value="9.949248181778595" />
-      <entry key="H1" value="36.696834940203026" />
-      <entry key="H2" value="94.68355627975453" />
-      <entry key="H4" value="255.20663327664428" />
-      <entry key="D1" value="4004.8746437134328" />
-      <entry key="W1" value="7788.022725842384" />
+      <entry key="S2" value="1.000114358183806" />
+      <entry key="S5" value="1.0401714837086489" />
+      <entry key="S10" value="1.2834475863739805" />
+      <entry key="S30" value="2.0427548809369167" />
+      <entry key="S60" value="2.447553507217994" />
+      <entry key="M2" value="2.758069269157131" />
+      <entry key="M5" value="3.1960326166456134" />
+      <entry key="M10" value="3.6077051881035227" />
+      <entry key="M15" value="4.415499092959133" />
+      <entry key="M30" value="11.830923973397699" />
+      <entry key="H1" value="38.49256289423306" />
+      <entry key="H2" value="96.42394864751842" />
+      <entry key="H4" value="256.85882320851545" />
+      <entry key="D1" value="4005.9677686927957" />
+      <entry key="W1" value="7789.770797353806" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -75,34 +91,34 @@
       <entry key="S30" value="0.0" />
       <entry key="S60" value="0.0" />
       <entry key="M2" value="0.0" />
-      <entry key="M5" value="2.850402849852954E-132" />
-      <entry key="M10" value="2.9223231177532233E-66" />
-      <entry key="M15" value="2.947560318657366E-44" />
-      <entry key="M30" value="2.9734486391222038E-22" />
-      <entry key="H1" value="2.9866406842564093E-11" />
-      <entry key="H2" value="9.465643626729868E-6" />
-      <entry key="H4" value="0.005328871046382468" />
-      <entry key="D1" value="1.0440152581101745" />
-      <entry key="W1" value="2.5800818304030293" />
+      <entry key="M5" value="2.670467816806066E-132" />
+      <entry key="M10" value="2.828582083002998E-66" />
+      <entry key="M15" value="2.8841847056010596E-44" />
+      <entry key="M30" value="2.9413088210546345E-22" />
+      <entry key="H1" value="2.9704556245835414E-11" />
+      <entry key="H2" value="9.439960904283659E-6" />
+      <entry key="H4" value="0.00532163683803816" />
+      <entry key="D1" value="1.0437789072495025" />
+      <entry key="W1" value="2.579998380099066" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9460576467255959" />
-      <entry key="MS500" value="0.9889709163809315" />
-      <entry key="S2" value="0.9972312513520695" />
-      <entry key="S5" value="0.9988915792636801" />
-      <entry key="S10" value="0.9994456359721139" />
-      <entry key="S30" value="0.9998377775887034" />
-      <entry key="S60" value="1.004661504621763" />
-      <entry key="M2" value="1.068902472211349" />
-      <entry key="M5" value="1.343805679023953" />
-      <entry key="M10" value="1.6940199055164282" />
-      <entry key="M15" value="2.4904710103340157" />
-      <entry key="M30" value="9.949208119697534" />
-      <entry key="H1" value="36.696759563164626" />
-      <entry key="H2" value="94.68344429146718" />
-      <entry key="H4" value="255.21178886065786" />
-      <entry key="D1" value="4005.918283714004" />
-      <entry key="W1" value="7790.602701891197" />
+      <entry key="MS100" value="0.9395227492140118" />
+      <entry key="MS500" value="0.9876008614453725" />
+      <entry key="S2" value="0.9969985712641538" />
+      <entry key="S5" value="1.0387158782454982" />
+      <entry key="S10" value="1.282087387999863" />
+      <entry key="S30" value="2.0416435666567665" />
+      <entry key="S60" value="2.446822881226804" />
+      <entry key="M2" value="2.757640034239873" />
+      <entry key="M5" value="3.195829394135971" />
+      <entry key="M10" value="3.607591886695056" />
+      <entry key="M15" value="4.4154153211950105" />
+      <entry key="M30" value="11.83085535668335" />
+      <entry key="H1" value="38.49247336239423" />
+      <entry key="H2" value="96.42382966401095" />
+      <entry key="H4" value="256.8639681396628" />
+      <entry key="D1" value="4007.0111718178687" />
+      <entry key="W1" value="7792.350689868637" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -129,42 +145,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "copilot.chat.legacySessionMetadata.migrated": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/State_Bank_of_Noida",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/State_Bank_of_Noida/tests/Loans&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\State_Bank_of_Noida\tests\Loans" />
+      <recent name="C:\State_Bank_of_Noida\tests\Transactions" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\State_Bank_of_Noida\tests\Business_Logics" />
       <recent name="C:\Banking_AI_ETLAutomation_Project\Help" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-PY-262.8665.369" />
-        <option value="bundled-python-sdk-6fa658e1df1a-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.8665.369" />
+        <option value="bundled-python-sdk-821f704e66d9-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.9437.214" />
       </set>
     </attachedChunks>
   </component>
@@ -195,7 +215,8 @@
       <workItem from="1787559268278" duration="17163000" />
       <workItem from="1787582031597" duration="1243000" />
       <workItem from="1787584701589" duration="116000" />
-      <workItem from="1787584931736" duration="334000" />
+      <workItem from="1787584931736" duration="8137000" />
+      <workItem from="1787743007956" duration="3051000" />
     </task>
     <task id="LOCAL-00001" summary="WorkFlow_1">
       <option name="closed" value="true" />
@@ -341,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787575141378</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="State Bank of Noida - End to End Execution - 10">
+      <option name="closed" value="true" />
+      <created>1787585280815</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1787585280815</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,6 +403,7 @@
     <MESSAGE value="State Bank of Noida - End to End Execution - 7" />
     <MESSAGE value="State Bank of Noida - End to End Execution - 8" />
     <MESSAGE value="State Bank of Noida - End to End Execution - 9" />
-    <option name="LAST_COMMIT_MESSAGE" value="State Bank of Noida - End to End Execution - 9" />
+    <MESSAGE value="State Bank of Noida - End to End Execution - 10" />
+    <option name="LAST_COMMIT_MESSAGE" value="State Bank of Noida - End to End Execution - 10" />
   </component>
 </project>
