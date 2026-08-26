@@ -7,6 +7,14 @@ openpyxl>=3.1          # Excel reports with cell colouring
 Pillow>=10.0           # embed the branding logo/author images in Excel reports
 PyYAML>=6.0            # YAML configuration files
 
+# Cloud / warehouse connectivity packages referenced by config/*.yaml
+boto3>=1.35.0          # Amazon S3 connectivity
+snowflake-connector-python>=3.12.0  # Snowflake connectivity
+psycopg2-binary>=2.9.9 # PostgreSQL / Amazon RDS connectivity
+redshift-connector>=2.1.0  # Amazon Redshift connectivity
+databricks-sql-connector>=3.1.0  # Databricks SQL connectivity
+pyarrow>=16.0.0        # Read/write Parquet files from S3 and local storage
+
 pytest>=8.0            # test runner
 pytest-order>=1.5      # control test execution order (markers)
 pytest-html>=4.0       # extra HTML test report
