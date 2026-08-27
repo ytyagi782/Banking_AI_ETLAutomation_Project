@@ -59,6 +59,6 @@ email:
     - "ytyagi782@gmail.com"
 
 
-  subject: "State_Bank_Of_Noida - Test Execution Report - (Batch#198)"
+  subject: "State_Bank_Of_Noida - Test Execution Report - (Demo - 2026-Aug-29)"
   # The app password is read from the .env file key EMAIL_APP_PASSWORD
   # (never store the real password inside this YAML file).

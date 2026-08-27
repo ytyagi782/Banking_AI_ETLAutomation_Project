@@ -1,7 +1,7 @@
 """Layer 1 : Source -> PreStaging  |  Customers table."""
 
 import pytest
-from validations import validations as v
+from utilities import validations as v
 
 LAYER = "SourceToPreStaging"
 TABLE = "Customers"

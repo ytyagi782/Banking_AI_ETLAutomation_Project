@@ -169,7 +169,7 @@ tests/
 
 ```python
 import pytest
-from validations import validations as v   # <-- imports validations.py NOW
+from utilities import validations as v   # <-- imports validations.py NOW
 
 LAYER = "SourceToPreStaging"
 TABLE = "Accounts"

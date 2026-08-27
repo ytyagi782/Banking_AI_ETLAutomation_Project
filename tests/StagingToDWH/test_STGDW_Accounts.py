@@ -1,7 +1,7 @@
 """Layer 3 : Staging -> DWH  |  Accounts -> DimAccount_Type1."""
 
 import pytest
-from validations import validations as v
+from utilities import validations as v
 
 LAYER = "StagingToDWH"
 TABLE = "Accounts"

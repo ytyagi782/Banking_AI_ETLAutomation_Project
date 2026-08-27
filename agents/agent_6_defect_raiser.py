@@ -118,7 +118,7 @@ def _fmt_row(row, keys):
 
 def _comparison_findings(layer, table):
     """Recompute the comparison from the live DB -> list of typed findings."""
-    from validations import validations as v
+    from utilities import validations as v
     ctx = v._context(layer, table)
     keys = ctx["keys"]
     cols = keys + [c for c in ctx["compare_columns"] if c not in keys]
@@ -208,7 +208,7 @@ def _comparison_findings(layer, table):
 
 def _single_finding(layer, table, test, fail):
     """One finding for non-comparison tests (count/null/duplicate/etc.)."""
-    from validations import validations as v
+    from utilities import validations as v
     validation, severity, expected = TEST_META.get(
         test, ("(unknown)", "Medium", "The validation passes."))
     dtype = "Validation Failure"

@@ -90,7 +90,7 @@ updated to match:
 * `validations/validations.py` (was `framework/validations.py`)
 * `reporting_engine/` (was `framework/reporting/`)
 Each package has an `__init__.py`. Import as `from utilities import db`,
-`from validations import validations as v`, `from reporting_engine import generate`.
+`from utilities import validations as v`, `from reporting_engine import generate`.
 
 ---
 

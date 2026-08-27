@@ -1,7 +1,7 @@
 """Layer 3 : Staging -> DWH  |  Branches -> DimBranch_Type2."""
 
 import pytest
-from validations import validations as v
+from utilities import validations as v
 
 LAYER = "StagingToDWH"
 TABLE = "Branches"

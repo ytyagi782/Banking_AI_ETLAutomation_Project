@@ -10,7 +10,7 @@ logger) so their results show up in the log file and the reports.
 
 import pytest
 
-from validations import validations as v
+from utilities import validations as v
 from utilities import db, comparison, result_store
 from utilities.logger import get_logger
 

@@ -117,7 +117,7 @@ def _emit_file(layer, table, cases):
     lines.append('"""')
     lines.append("")
     lines.append("import pytest")
-    lines.append("from validations import validations as v")
+    lines.append("from utilities import validations as v")
     lines.append("")
     lines.append(f'LAYER = "{layer}"')
     lines.append(f'TABLE = "{table}"')
