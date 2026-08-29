@@ -111,8 +111,7 @@ jobs:
         id: pytest
         continue-on-error: true
         run: |
-          --pytest
-          pytest --only="metadata_check,count_check,null_check,constraint_check,direct_move_check,transformation"
+          pytest
 
       - name: Publish Test Results to Run Summary
         if: always()
