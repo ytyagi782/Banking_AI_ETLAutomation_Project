@@ -61,9 +61,25 @@ def add_comparison(layer, table, keys, result):
     }
 
 
+_LAYER_ORDER = [
+    "SourceToPreStaging",
+    "PreStagingToStaging",
+    "StagingToDWH",
+    "API Automation",
+    "PowerBI Automation",
+    "UI Automation",
+]
+_LAYER_RANK = {name: i for i, name in enumerate(_LAYER_ORDER)}
+
+
+def _sorted(rows):
+    """Return rows sorted by the canonical layer display order."""
+    return sorted(rows, key=lambda r: (_LAYER_RANK.get(r["layer"], len(_LAYER_ORDER)), r["layer"]))
+
+
 def get_failures():
     """Only the failed validation rows."""
-    return [r for r in _results if r["status"] == "FAIL"]
+    return _sorted([r for r in _results if r["status"] == "FAIL"])
 
 
 def get_comparisons():
@@ -73,12 +89,12 @@ def get_comparisons():
 
 def get_skipped():
     """Only the skipped validation rows."""
-    return [r for r in _results if r["status"] == "SKIP"]
+    return _sorted([r for r in _results if r["status"] == "SKIP"])
 
 
 def get_executed():
     """Only the rows that actually ran (PASS or FAIL, not SKIP)."""
-    return [r for r in _results if r["status"] != "SKIP"]
+    return _sorted([r for r in _results if r["status"] != "SKIP"])
 
 
 def summary_counts():
@@ -95,7 +111,12 @@ def summary_counts():
 
 
 def summary_by_layer():
-    """Pass/fail/skip counts grouped by layer -> used in the summary report."""
+    """Pass/fail/skip counts grouped by layer -> used in the summary report.
+
+    Layers are returned in a fixed display order so reports always show:
+    ETL layers first, then API Automation, PowerBI Automation, UI Automation.
+    Any layer not in the predefined order appears at the end alphabetically.
+    """
     grouped = {}
     for r in _results:
         g = grouped.setdefault(r["layer"],
@@ -106,4 +127,7 @@ def summary_by_layer():
             g["skipped"] += 1
         else:
             g["passed"] += 1
-    return grouped
+
+    sorted_keys = sorted(grouped.keys(),
+                         key=lambda k: (_LAYER_RANK.get(k, len(_LAYER_ORDER)), k))
+    return {k: grouped[k] for k in sorted_keys}

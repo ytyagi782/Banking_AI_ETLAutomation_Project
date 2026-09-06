@@ -46,11 +46,33 @@ def pytest_addoption(parser):
     )
 
 
+def _module_order_key(item):
+    """
+    Sort key so tests run in module order:
+    ETL_Automation_Module (0) -> API_Automation_Module (1) ->
+    PowerBI_Automation_Module (2) -> UI_Automation_Module (3).
+    Items not matching any known module keep their original position (99).
+    """
+    _ORDER = {
+        "ETL_Automation_Module": 0,
+        "API_Automation_Module": 1,
+        "PowerBI_Automation_Module": 2,
+        "UI_Automation_Module": 3,
+    }
+    fspath = str(item.fspath)
+    for mod_name, rank in _ORDER.items():
+        if mod_name in fspath:
+            return rank
+    return 99
+
+
 def pytest_collection_modifyitems(config, items):
     """
-    Execute only the markers specified in --only.
-    Skip all other tests.
+    1. Sort items so modules run in the order:
+       ETL -> API -> PowerBI -> UI.
+    2. Apply --only marker filtering (skip non-matching tests).
     """
+    items.sort(key=_module_order_key)
 
     only = config.getoption("--only")
 
@@ -88,7 +110,7 @@ def pytest_runtest_setup(item):
 
 @pytest.hookimpl(wrapper=True)
 def pytest_runtest_makereport(item, call):
-    """Record every skipped test into the result store so reports show it."""
+    """Record skipped tests and generate failure screenshots for sample cases."""
     report = yield
 
     if report.when == "setup" and report.skipped:
@@ -109,7 +131,36 @@ def pytest_runtest_makereport(item, call):
             category="skipped",
         )
 
+    # auto-generate HTML failure screenshots for API / PowerBI / UI tests
+    if report.when == "call" and report.failed:
+        _maybe_generate_screenshot(item, report)
+
     return report
+
+
+def _maybe_generate_screenshot(item, report):
+    """If the failed test is a parametrized sample case, generate a screenshot."""
+    try:
+        # parametrized tests expose callspec.params which contains the case dict
+        if not hasattr(item, "callspec"):
+            return
+        case = item.callspec.params.get("case")
+        if not isinstance(case, dict) or "TestCaseID" not in case:
+            return
+
+        from utilities.screenshot import generate_failure_screenshot
+
+        # build a meaningful error string from the report
+        error_text = ""
+        if report.longrepr:
+            error_text = str(report.longrepr)
+
+        path = generate_failure_screenshot(case, error_text)
+        if path:
+            log = get_logger()
+            log.info(f"Failure screenshot saved: {path}")
+    except Exception:
+        pass  # never let screenshot generation break the test run
 
 
 def pytest_sessionstart(session):
@@ -117,6 +168,18 @@ def pytest_sessionstart(session):
     log = get_logger()
 
     result_store.reset()
+
+    # clean previous failure screenshots so only current-run failures remain
+    _screenshots_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "screenshots")
+    for sub in ("API", "PowerBI", "UI"):
+        folder = os.path.join(_screenshots_dir, sub)
+        if os.path.isdir(folder):
+            for f in os.listdir(folder):
+                if f.endswith("_failure.html"):
+                    try:
+                        os.remove(os.path.join(folder, f))
+                    except OSError:
+                        pass
 
     # gated to False only if the prerequisite reset/reload test fails; when the
     # prerequisite is not run at all, it stays True so the rest of the suite

@@ -21,6 +21,24 @@ pytest-html>=4.0       # extra HTML test report
 pytest-rerunfailures>=14.0   # optional: re-run flaky tests
 pytest-xdist>=3.0      # optional: parallel test execution
 
+# --- UI Automation (Playwright + Python) --------------------------------------
+playwright>=1.48.0     # browser automation (Chromium, Firefox, WebKit)
+pytest-playwright>=0.5.2  # pytest plugin for Playwright fixtures & assertions
+pytest-base-url>=2.1   # configure base URL for Playwright tests via CLI/config
+Faker>=30.0            # generate realistic test data (names, emails, addresses)
+
+# --- API Automation (Python) -------------------------------------------------
+requests>=2.32.0       # HTTP client for REST API testing
+jsonschema>=4.23       # JSON response schema validation
+PyJWT>=2.9.0           # JWT token creation, decoding, and verification
+pytest-responses>=0.5  # mock HTTP responses in pytest for API unit tests
+
+# --- PowerBI Automation (Python) ---------------------------------------------
+msal>=1.31.0           # Microsoft Authentication Library (Azure AD / Entra ID tokens)
+azure-identity>=1.19   # Azure credential management for Power BI REST API
+powerbiclient>=0.8     # Power BI embedded client for Python (Jupyter/report access)
+tabulate>=0.9          # pretty-print comparison tables in Power BI validation logs
+
 # --- AI Agents (agents/ package) -------------------------------------------
 anthropic>=0.70.0      # Claude API SDK (model: claude-opus-4-8)
 pydantic>=2.0          # structured/validated output from the model

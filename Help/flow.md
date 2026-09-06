@@ -165,7 +165,7 @@ tests/
 ```
 
 **When each test file is imported**, its top-level code runs. For example, in
-`../tests/SourceToPreStaging/test_SRCPS_Accounts.py`:
+`../tests/ETL_Automation_Module/SourceToPreStaging/test_SRCPS_Accounts.py`:
 
 ```python
 import pytest
