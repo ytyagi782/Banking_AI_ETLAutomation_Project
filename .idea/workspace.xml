@@ -8,41 +8,8 @@
     <option name="selectedProviderName" value="Anthropic" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="State Bank of Noida - Demo Session">
-      <change afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/StagingToDWH/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/PowerBI_Automation_Module/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/UI_Automation_Module/__init__.py" afterDir="false" />
+    <list default="true" id="d1fe66b7-2855-4abe-bd71-342348262a5d" name="Changes" comment="State Bank of Noida - Final with 4 module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Help/flow.md" beforeDir="false" afterPath="$PROJECT_DIR$/Help/flow.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Accounts/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/API_Automation_Module/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Beneficiaries/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Accounts/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Deposits/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Beneficiaries/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Fraud and AML/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Deposits/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Loans/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Fraud and AML/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Payments and Fund Transfers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Loans/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Trade Finance/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Payments and Fund Transfers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/Transactions/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Trade Finance/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Business_Logics/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/Transactions/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/PreStagingToStaging/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/Business_Logics/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/PreStagingToStaging/test_PSSTG_Accounts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/PreStagingToStaging/test_PSSTG_Accounts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/PreStagingToStaging/test_PSSTG_Branches.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/PreStagingToStaging/test_PSSTG_Branches.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/PreStagingToStaging/test_PSSTG_Customers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/PreStagingToStaging/test_PSSTG_Customers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/PreStagingToStaging/test_PSSTG_Transactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/PreStagingToStaging/test_PSSTG_Transactions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SourceToPreStaging/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/PreStagingToStaging/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SourceToPreStaging/test_SRCPS_Accounts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/SourceToPreStaging/test_SRCPS_Accounts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SourceToPreStaging/test_SRCPS_Branches.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/SourceToPreStaging/test_SRCPS_Branches.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SourceToPreStaging/test_SRCPS_Customers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/SourceToPreStaging/test_SRCPS_Customers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SourceToPreStaging/test_SRCPS_Transactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/SourceToPreStaging/test_SRCPS_Transactions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/StagingToDWH/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/SourceToPreStaging/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/StagingToDWH/test_STGDW_Accounts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/StagingToDWH/test_STGDW_Accounts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/StagingToDWH/test_STGDW_Branches.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/StagingToDWH/test_STGDW_Branches.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/StagingToDWH/test_STGDW_Customers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/StagingToDWH/test_STGDW_Customers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/StagingToDWH/test_STGDW_Transactions.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ETL_Automation_Module/StagingToDWH/test_STGDW_Transactions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/result_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/result_store.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,23 +54,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7518738968353846" />
-      <entry key="MS500" value="4.057519137111564" />
-      <entry key="S2" value="6.6742666335381005" />
-      <entry key="S5" value="7.892619880787153" />
-      <entry key="S10" value="8.410613076884172" />
-      <entry key="S30" value="8.794921824693656" />
-      <entry key="S60" value="8.896338363565636" />
-      <entry key="M2" value="8.952104095226506" />
-      <entry key="M5" value="10.405195551457673" />
-      <entry key="M10" value="19.278702008795804" />
-      <entry key="M15" value="29.220485962359767" />
-      <entry key="M30" value="51.370102398046576" />
-      <entry key="H1" value="80.19581570559313" />
-      <entry key="H2" value="130.73482805712817" />
-      <entry key="H4" value="263.2197163046503" />
-      <entry key="D1" value="3783.4270134634144" />
-      <entry key="W1" value="7826.328000361398" />
+      <entry key="MS100" value="1.0000021147081373" />
+      <entry key="MS500" value="1.1249254990946793" />
+      <entry key="S2" value="2.6770994608205836" />
+      <entry key="S5" value="4.396525121600691" />
+      <entry key="S10" value="5.461036525364239" />
+      <entry key="S30" value="6.420377403089236" />
+      <entry key="S60" value="6.7012014342624955" />
+      <entry key="M2" value="6.909371804566563" />
+      <entry key="M5" value="8.35701902386661" />
+      <entry key="M10" value="14.087185767014526" />
+      <entry key="M15" value="22.01803674685914" />
+      <entry key="M30" value="43.842500297510284" />
+      <entry key="H1" value="74.9201713558308" />
+      <entry key="H2" value="127.31561566391959" />
+      <entry key="H4" value="259.51442849782666" />
+      <entry key="D1" value="3764.338607265115" />
+      <entry key="W1" value="7825.59572431163" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -114,34 +81,34 @@
       <entry key="S30" value="0.0" />
       <entry key="S60" value="0.0" />
       <entry key="M2" value="0.0" />
-      <entry key="M5" value="4.838119161696787E-144" />
-      <entry key="M10" value="3.8072675059846583E-72" />
-      <entry key="M15" value="3.5160319024034403E-48" />
-      <entry key="M30" value="3.2475473665559765E-24" />
-      <entry key="H1" value="3.12126399923988E-12" />
-      <entry key="H2" value="3.0600175187424067E-6" />
-      <entry key="H4" value="0.0030298567268662543" />
-      <entry key="D1" value="0.9502502505604166" />
-      <entry key="W1" value="2.5456287826951143" />
+      <entry key="M5" value="6.595327946277535E-145" />
+      <entry key="M10" value="1.4057021514892455E-72" />
+      <entry key="M15" value="1.809559017173915E-48" />
+      <entry key="M30" value="2.3297829708925462E-24" />
+      <entry key="H1" value="2.643689763576564E-12" />
+      <entry key="H2" value="2.8162026703242035E-6" />
+      <entry key="H4" value="0.0029066456431867927" />
+      <entry key="D1" value="0.9436979078131396" />
+      <entry key="W1" value="2.5431137556729637" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6245314536288813" />
-      <entry key="MS500" value="4.001059148087866" />
-      <entry key="S2" value="6.649710748901596" />
-      <entry key="S5" value="7.88070139798314" />
-      <entry key="S10" value="8.404200927447155" />
-      <entry key="S30" value="8.792671712360466" />
-      <entry key="S60" value="8.895198387282786" />
-      <entry key="M2" value="8.951530060733113" />
-      <entry key="M5" value="10.404933193651969" />
-      <entry key="M10" value="19.278471634163136" />
-      <entry key="M15" value="29.22024644645481" />
-      <entry key="M30" value="51.3698266941711" />
-      <entry key="H1" value="80.19552620954637" />
-      <entry key="H2" value="130.73456916364387" />
-      <entry key="H4" value="263.22250384373746" />
-      <entry key="D1" value="3784.376892090223" />
-      <entry key="W1" value="7828.873520303474" />
+      <entry key="MS100" value="0.9330349789030773" />
+      <entry key="MS500" value="1.1097418956329186" />
+      <entry key="S2" value="2.66505750312628" />
+      <entry key="S5" value="4.3834899858930765" />
+      <entry key="S10" value="5.451134133507868" />
+      <entry key="S30" value="6.4159359007924905" />
+      <entry key="S60" value="6.698804978654413" />
+      <entry key="M2" value="6.908122852655749" />
+      <entry key="M5" value="8.356473627823627" />
+      <entry key="M10" value="14.086843922292983" />
+      <entry key="M15" value="22.017741845972065" />
+      <entry key="M30" value="43.8422164714046" />
+      <entry key="H1" value="74.91988308087736" />
+      <entry key="H2" value="127.31535584772816" />
+      <entry key="H4" value="259.51709190101" />
+      <entry key="D1" value="3765.281934314713" />
+      <entry key="W1" value="7828.138729077495" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -149,9 +116,6 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3GaC8sD73ge8uwyChR2bJ4DJq0k" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectSessionTemplates">
     <option name="panelTemplate">
       <template>
@@ -171,32 +135,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/State_Bank_of_Noida/tests/Loans&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/State_Bank_of_Noida/tests/Loans",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\State_Bank_of_Noida\tests\Loans" />
@@ -250,7 +214,7 @@
       <workItem from="1788577499011" duration="592000" />
       <workItem from="1788677948267" duration="1543000" />
       <workItem from="1788679508849" duration="71000" />
-      <workItem from="1788679591830" duration="4383000" />
+      <workItem from="1788679591830" duration="5449000" />
     </task>
     <task id="LOCAL-00001" summary="WorkFlow_1">
       <option name="closed" value="true" />
@@ -492,7 +456,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788012342312</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="State Bank of Noida - Final with 4 module">
+      <option name="closed" value="true" />
+      <created>1788684168038</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1788684168038</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +482,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WorkFlow_2" />
     <MESSAGE value="WorkFlow_3" />
     <MESSAGE value="End to End Pipleline - All Source Targets" />
     <MESSAGE value="End to End Pipleline - All Source &amp; Targets" />
@@ -535,6 +506,7 @@
     <MESSAGE value="State Bank of Noida - End to End Execution - Final-7" />
     <MESSAGE value="State Bank of Noida - End to End Execution - Final-7\8" />
     <MESSAGE value="State Bank of Noida - Demo Session" />
-    <option name="LAST_COMMIT_MESSAGE" value="State Bank of Noida - Demo Session" />
+    <MESSAGE value="State Bank of Noida - Final with 4 module" />
+    <option name="LAST_COMMIT_MESSAGE" value="State Bank of Noida - Final with 4 module" />
   </component>
 </project>
